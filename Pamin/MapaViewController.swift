@@ -14,6 +14,8 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var gerenciadorLocalizacao = CLLocationManager()
     var eventos : [Event] = []
     var isFirstCall: Bool = true
+    let api = PaminAPI()
+    
     @IBOutlet weak var mapa: MKMapView!
     
     override func viewDidLoad() {
@@ -22,11 +24,6 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         self.configurarGerenciadorLocalizacao()
         mapa.delegate = self
         
-        let api = PaminAPI()
-        api.popularArrayDeEvents { (events) in
-            self.eventos = events
-            self.marcarAnotacoes()
-        }
     }
     
     func marcarAnotacoes(){
@@ -43,6 +40,15 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.eventos.removeAll()
+        
+        api.popularArrayDeEvents { (events) in
+            self.eventos = events
+            self.marcarAnotacoes()
+        }
+    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -65,13 +71,12 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         self.Centralizar(latitude: latitude!, longitude: longitude!)
     }
-    
 
     
     func Centralizar(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
         
-        let deltaLatitude = 0.05
-        let deltaLongitude = 0.05
+        let deltaLatitude = 0.03
+        let deltaLongitude = 0.03
         
         let localizacao = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let zoom = MKCoordinateSpan(latitudeDelta: deltaLatitude, longitudeDelta: deltaLongitude)
@@ -90,7 +95,6 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

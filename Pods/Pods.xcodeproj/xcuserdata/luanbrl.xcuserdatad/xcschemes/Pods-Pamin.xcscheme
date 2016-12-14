@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27DDB0E1026B18637C1FB2389C2E53EF"
-               BuildableName = "SideMenu.framework"
-               BlueprintName = "SideMenu"
+               BlueprintIdentifier = "E5E460B20F83C51DC5F95A38E6F41703"
+               BuildableName = "Pods_Pamin.framework"
+               BlueprintName = "Pods-Pamin"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27DDB0E1026B18637C1FB2389C2E53EF"
-            BuildableName = "SideMenu.framework"
-            BlueprintName = "SideMenu"
+            BlueprintIdentifier = "E5E460B20F83C51DC5F95A38E6F41703"
+            BuildableName = "Pods_Pamin.framework"
+            BlueprintName = "Pods-Pamin"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

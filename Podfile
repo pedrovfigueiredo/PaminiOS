@@ -6,7 +6,6 @@ target 'Pamin' do
   use_frameworks!
 
   # Pods for Pamin
-  pod 'SideMenu'
   pod 'Alamofire', '~> 4.0'
 
 

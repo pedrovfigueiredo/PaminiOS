@@ -9,10 +9,8 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
     
     @IBOutlet weak var usuarioTextField: UITextField!
-    
     @IBOutlet weak var senhaTextField: UITextField!
     
     override func viewDidLoad() {

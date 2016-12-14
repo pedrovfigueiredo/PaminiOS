@@ -10,10 +10,9 @@ import UIKit
 
 class CelulaEvento: UITableViewCell {
     
-    
-
     @IBOutlet weak var labelTitulo: UILabel!
-
+    @IBOutlet weak var labelCategoria: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

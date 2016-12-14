@@ -11,15 +11,16 @@ import Alamofire
 
 class PaminAPI {
     
-    var events : [Event] = []
+    var events = [Event]()
     
     func popularArrayDeEvents(completion: @escaping ([Event])->()) {
-        
+        self.events.removeAll()
         guard let URL = NSURL(string: "http://pamin.lavid.ufpb.br:3333/api/registers.json")
             else{
                 print("Não foi possível criar a URL")
                 return
             }
+        
         let Requisicao = URLRequest(url: URL as URL)
         
         Alamofire.request(Requisicao)
@@ -37,16 +38,6 @@ class PaminAPI {
             
         }
     }
-    
-    func getEvents() -> [Event]{
-        return self.events
-    }
-    
-    /*
-    func completion(response:[Event]) {
-        self.events = response
-    }
- */
 }
 
 
