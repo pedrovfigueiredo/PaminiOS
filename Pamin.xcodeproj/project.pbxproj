@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0C3A521E01CD6F0006173C /* EventoAnotacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0C3A511E01CD6F0006173C /* EventoAnotacao.swift */; };
 		2A0F0DC21E009728004C7C8A /* CelulaEvento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F0DC11E009728004C7C8A /* CelulaEvento.swift */; };
 		2A0F0DC41E0098F4004C7C8A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F0DC31E0098F4004C7C8A /* LoginViewController.swift */; };
 		2A79C8B91E0078DE00352289 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A79C8B81E0078DE00352289 /* MapaViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		1CB13ACE22C1CFEBFF2D2B1E /* Pods_Pamin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pamin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A0C3A511E01CD6F0006173C /* EventoAnotacao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventoAnotacao.swift; sourceTree = "<group>"; };
 		2A0F0DC11E009728004C7C8A /* CelulaEvento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelulaEvento.swift; sourceTree = "<group>"; };
 		2A0F0DC31E0098F4004C7C8A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2A79C8B81E0078DE00352289 /* MapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 			children = (
 				2A7AC00A1E006D8900E87767 /* AppDelegate.swift */,
 				2AA45E181E0089A800D5C790 /* Event.swift */,
+				2A0C3A511E01CD6F0006173C /* EventoAnotacao.swift */,
 				2A0F0DC31E0098F4004C7C8A /* LoginViewController.swift */,
 				2A0F0DC11E009728004C7C8A /* CelulaEvento.swift */,
 				2A7AC00C1E006D8900E87767 /* ViewController.swift */,
@@ -233,6 +236,7 @@
 				2A79C8B91E0078DE00352289 /* MapaViewController.swift in Sources */,
 				2A8274E71E008E7500E5A2B2 /* PaminAPI.swift in Sources */,
 				2A0F0DC21E009728004C7C8A /* CelulaEvento.swift in Sources */,
+				2A0C3A521E01CD6F0006173C /* EventoAnotacao.swift in Sources */,
 				2A7AC00B1E006D8900E87767 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

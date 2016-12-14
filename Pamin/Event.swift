@@ -35,7 +35,7 @@
     
     
     /// Category Informations
-    private var _category_id: String!
+    private var _category_id: Int!
     private var _category_name: String!
     
     
@@ -149,10 +149,10 @@
         
         /// Category informations from Json
         if let category = data["category"] {
-            if let category_id = category["id"] as? String {
+            if let category_id = category["id"] as? Int {
                 self._category_id = category_id
             } else {
-                _category_id = "none"
+                _category_id = 0
             }
             if let category_name = category["name"] as? String {
                 self._category_name = category_name
@@ -165,7 +165,7 @@
         /// User informations from Json
         if let user = data["user"] {
             if let user_id = user["id"] as? String {
-                self._category_id = user_id
+                self._user_id = user_id
             } else {
                 _user_id = "none"
             }
@@ -199,7 +199,7 @@
         self.end_date = ""
         self.created_at = ""
         self.updated_at = ""
-        self.category_id = ""
+        self.category_id = 0
         self.category_name = ""
     }
     
@@ -327,7 +327,7 @@
     }
     
     
-    var category_id: String {
+    var category_id: Int {
         get {
             return self._category_id
         } set(category_id) {

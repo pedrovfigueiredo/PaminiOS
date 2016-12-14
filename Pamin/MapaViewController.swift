@@ -30,14 +30,31 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         
         for evento in eventos{
             
-            let anotacao = MKPointAnnotation()
-            anotacao.coordinate.latitude = Double(evento.latitude)!
-            anotacao.coordinate.longitude = Double(evento.longitude)!
-            anotacao.title = evento.what
-            anotacao.subtitle = evento.category_name
+            let coordenadas = CLLocationCoordinate2D(latitude: Double(evento.latitude)!, longitude: Double(evento.longitude)!)
+            let anotacao = EventoAnotacao(coordenadas: coordenadas, evento: evento, title: evento.what, subtitle: evento.category_name)
             
             self.mapa.addAnnotation(anotacao)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let anotacaoView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        
+        if annotation is MKUserLocation { // mostrar usuario
+            
+        }else{ // mostrar evento
+            let eventoAnotacao  = (annotation as! EventoAnotacao)
+            anotacaoView.image = eventoAnotacao.getImageAnotacao()
+        }
+        
+        var frame = anotacaoView.frame
+        frame.size.height = 40
+        frame.size.width = 40
+        
+        anotacaoView.frame = frame
+        anotacaoView.canShowCallout = true
+        
+        return anotacaoView
     }
     
     override func viewDidAppear(_ animated: Bool) {

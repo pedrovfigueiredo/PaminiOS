@@ -33,6 +33,9 @@ class PaminAPI {
                         self.events.append(entry)
                     }
                     print(resposta.result)
+                    for event in self.events {
+                        print(event.category_id)
+                    }
                     completion(self.events)
                 }
             
