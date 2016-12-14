@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A7AC0061E006D8900E87767"
-               BuildableName = "Pamin.app"
-               BlueprintName = "Pamin"
-               ReferencedContainer = "container:Pamin.xcodeproj">
+               BlueprintIdentifier = "2A106B14AA9500A5E9552EF943DC7E35"
+               BuildableName = "Pods_Pamin.framework"
+               BlueprintName = "Pods-Pamin"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A7AC0061E006D8900E87767"
-            BuildableName = "Pamin.app"
-            BlueprintName = "Pamin"
-            ReferencedContainer = "container:Pamin.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -51,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A7AC0061E006D8900E87767"
-            BuildableName = "Pamin.app"
-            BlueprintName = "Pamin"
-            ReferencedContainer = "container:Pamin.xcodeproj">
+            BlueprintIdentifier = "2A106B14AA9500A5E9552EF943DC7E35"
+            BuildableName = "Pods_Pamin.framework"
+            BlueprintName = "Pods-Pamin"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,16 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A7AC0061E006D8900E87767"
-            BuildableName = "Pamin.app"
-            BlueprintName = "Pamin"
-            ReferencedContainer = "container:Pamin.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -1,0 +1,6 @@
+framework module Pods_Pamin {
+  umbrella header "Pods-Pamin-umbrella.h"
+
+  export *
+  module * { export * }
+}

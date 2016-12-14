@@ -7,14 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0F0DC21E009728004C7C8A /* CelulaEvento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F0DC11E009728004C7C8A /* CelulaEvento.swift */; };
+		2A0F0DC41E0098F4004C7C8A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0F0DC31E0098F4004C7C8A /* LoginViewController.swift */; };
+		2A79C8B91E0078DE00352289 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A79C8B81E0078DE00352289 /* MapaViewController.swift */; };
 		2A7AC00B1E006D8900E87767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AC00A1E006D8900E87767 /* AppDelegate.swift */; };
 		2A7AC00D1E006D8900E87767 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AC00C1E006D8900E87767 /* ViewController.swift */; };
 		2A7AC0101E006D8900E87767 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AC00E1E006D8900E87767 /* Main.storyboard */; };
 		2A7AC0121E006D8900E87767 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AC0111E006D8900E87767 /* Assets.xcassets */; };
 		2A7AC0151E006D8900E87767 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */; };
+		2A8274E71E008E7500E5A2B2 /* PaminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */; };
+		2AA45E191E0089A800D5C790 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45E181E0089A800D5C790 /* Event.swift */; };
+		2B8D6FE3D7953733E63A2EDC /* Pods_Pamin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB13ACE22C1CFEBFF2D2B1E /* Pods_Pamin.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CB13ACE22C1CFEBFF2D2B1E /* Pods_Pamin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pamin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A0F0DC11E009728004C7C8A /* CelulaEvento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CelulaEvento.swift; sourceTree = "<group>"; };
+		2A0F0DC31E0098F4004C7C8A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2A79C8B81E0078DE00352289 /* MapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		2A7AC0071E006D8900E87767 /* Pamin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pamin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7AC00A1E006D8900E87767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A7AC00C1E006D8900E87767 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +32,10 @@
 		2A7AC0111E006D8900E87767 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A7AC0141E006D8900E87767 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A7AC0161E006D8900E87767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaminAPI.swift; sourceTree = "<group>"; };
+		2AA45E181E0089A800D5C790 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		6F2C1E735552303C4977FE3C /* Pods-Pamin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pamin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pamin/Pods-Pamin.release.xcconfig"; sourceTree = "<group>"; };
+		7039FED8A67D020ED15D2B86 /* Pods-Pamin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pamin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pamin/Pods-Pamin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B8D6FE3D7953733E63A2EDC /* Pods_Pamin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +55,8 @@
 			children = (
 				2A7AC0091E006D8900E87767 /* Pamin */,
 				2A7AC0081E006D8900E87767 /* Products */,
+				9CC1D0B59DED64ADC7B0DB2E /* Pods */,
+				C640FCC924B01DA0266AA515 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +72,35 @@
 			isa = PBXGroup;
 			children = (
 				2A7AC00A1E006D8900E87767 /* AppDelegate.swift */,
+				2AA45E181E0089A800D5C790 /* Event.swift */,
+				2A0F0DC31E0098F4004C7C8A /* LoginViewController.swift */,
+				2A0F0DC11E009728004C7C8A /* CelulaEvento.swift */,
 				2A7AC00C1E006D8900E87767 /* ViewController.swift */,
+				2A79C8B81E0078DE00352289 /* MapaViewController.swift */,
+				2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */,
 				2A7AC00E1E006D8900E87767 /* Main.storyboard */,
 				2A7AC0111E006D8900E87767 /* Assets.xcassets */,
 				2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */,
 				2A7AC0161E006D8900E87767 /* Info.plist */,
 			);
 			path = Pamin;
+			sourceTree = "<group>";
+		};
+		9CC1D0B59DED64ADC7B0DB2E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7039FED8A67D020ED15D2B86 /* Pods-Pamin.debug.xcconfig */,
+				6F2C1E735552303C4977FE3C /* Pods-Pamin.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C640FCC924B01DA0266AA515 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1CB13ACE22C1CFEBFF2D2B1E /* Pods_Pamin.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +110,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A7AC0191E006D8900E87767 /* Build configuration list for PBXNativeTarget "Pamin" */;
 			buildPhases = (
+				52B08F4F13B4D1A38DA066A5 /* [CP] Check Pods Manifest.lock */,
 				2A7AC0031E006D8900E87767 /* Sources */,
 				2A7AC0041E006D8900E87767 /* Frameworks */,
 				2A7AC0051E006D8900E87767 /* Resources */,
+				7D78A204E1F9BB2631471312 /* [CP] Embed Pods Frameworks */,
+				439172BD475312C00B984B9A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -91,11 +133,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Lavid;
 				TargetAttributes = {
 					2A7AC0061E006D8900E87767 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = DF495Z7ZDS;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,12 +174,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		439172BD475312C00B984B9A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pamin/Pods-Pamin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52B08F4F13B4D1A38DA066A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7D78A204E1F9BB2631471312 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pamin/Pods-Pamin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2A7AC0031E006D8900E87767 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A0F0DC41E0098F4004C7C8A /* LoginViewController.swift in Sources */,
+				2AA45E191E0089A800D5C790 /* Event.swift in Sources */,
 				2A7AC00D1E006D8900E87767 /* ViewController.swift in Sources */,
+				2A79C8B91E0078DE00352289 /* MapaViewController.swift in Sources */,
+				2A8274E71E008E7500E5A2B2 /* PaminAPI.swift in Sources */,
+				2A0F0DC21E009728004C7C8A /* CelulaEvento.swift in Sources */,
 				2A7AC00B1E006D8900E87767 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +277,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -230,6 +327,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -256,8 +354,12 @@
 		};
 		2A7AC01A1E006D8900E87767 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7039FED8A67D020ED15D2B86 /* Pods-Pamin.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DF495Z7ZDS;
 				INFOPLIST_FILE = Pamin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lavidufpb.Pamin;
@@ -268,8 +370,12 @@
 		};
 		2A7AC01B1E006D8900E87767 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F2C1E735552303C4977FE3C /* Pods-Pamin.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DF495Z7ZDS;
 				INFOPLIST_FILE = Pamin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = lavidufpb.Pamin;
@@ -297,6 +403,7 @@
 				2A7AC01B1E006D8900E87767 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
