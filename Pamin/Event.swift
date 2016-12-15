@@ -15,9 +15,9 @@
  class Event {
     
     ///Event Informations
-    private var _id: String!
+    private var _event_id: Int!
     private var _what: String!
-    private var _where_id: String!
+    private var _where_event: String!
     private var _latitude: String!
     private var _longitude: String!
     private var _promotor: String!
@@ -40,7 +40,7 @@
     
     
     ///user informations
-    private var _user_id: String!
+    private var _user_id: Int!
     private var _user_email: String!
     private var _user_name: String!
     
@@ -48,73 +48,73 @@
     init (data: JSONDictionary){
         
         ///Event informations from Json
-        if let id = data["id"] as? String {
-            self._id = id;
+        if let event_id = data["id"] as? Int {
+            self._event_id = event_id;
         } else {
-            self._id = "none"
+            self._event_id = 0
         }
         
         
         if let description = data["description"] as? String {
             self._description = description;
         } else {
-            _description = "none"
+            _description = ""
         }
         
         
         if let what = data["what"] as? String {
             self._what = what;
         } else {
-            _what = "none"
+            _what = ""
         }
         
         
-        if let where_id = data["where"] as? String {
-            self._where_id = where_id;
+        if let where_event = data["where"] as? String {
+            self._where_event = where_event;
         } else {
-            self._where_id = "none"
+            self._where_event = ""
         }
         
         
         if let latitude = data["latitude"] as? String {
             self._latitude = latitude;
         } else {
-            self._latitude = "none"
+            self._latitude = ""
         }
         
         
         if let longitude = data["longitude"] as? String {
             self._longitude = longitude;
         } else {
-            self._longitude = "none"
+            self._longitude = ""
         }
         
         
         if let promotor = data["promotor"] as? String {
             self._promotor = promotor;
         } else {
-            self._promotor = "none"
+            self._promotor = ""
         }
         
         
         if let promotor_contact = data["promotor_contact"] as? String {
             self._promotor_contact = promotor_contact;
         } else {
-            self._promotor_contact = "none"
+            self._promotor_contact = ""
         }
         
         
         if let pictures = data["pictures"] as? String {
             self._pictures = pictures;
         } else {
-            self._pictures = "none"
+            self._pictures = ""
         }
         
         
         if let price = data["price"] as? String {
             self._price = price;
         } else {
-            self._price = "none"
+            self._price = ""
         }
         
         
@@ -122,28 +122,28 @@
         if let start_date = data["start_date"] as? String {
             self._start_date = start_date
         } else {
-            _start_date = "none"
+            _start_date = ""
         }
         
         
         if let end_date = data["end_date"] as? String {
             self._end_date = end_date
         } else {
-            self._end_date = "none"
+            self._end_date = ""
         }
         
         
         if let created_at = data["created_at"] as? String {
             self._created_at = created_at
         } else {
-            _created_at = "none"
+            _created_at = ""
         }
         
         
         if let updated_at = data["updated_at"] as? String {
             self._updated_at = updated_at
         } else {
-            _updated_at = "none"
+            _updated_at = ""
         }
         
         
@@ -157,27 +157,27 @@
             if let category_name = category["name"] as? String {
                 self._category_name = category_name
             } else {
-                _category_name = "none"
+                _category_name = ""
             }
         }
         
         
         /// User informations from Json
         if let user = data["user"] {
-            if let user_id = user["id"] as? String {
+            if let user_id = user["id"] as? Int {
                 self._user_id = user_id
             } else {
-                _user_id = "none"
+                _user_id = 0
             }
             if let user_email = user["email"] as? String {
                 self._user_email = user_email
             } else {
-                _user_email = "none"
+                _user_email = ""
             }
             if let user_name = user["name"] as? String {
                 self._user_name = user_name
             } else {
-                _user_name = "none"
+                _user_name = ""
             }
         }
         
@@ -185,10 +185,10 @@
     
     
     init(){
-        self.id = ""
+        self.event_id = 0
         self.description = ""
         self.what = ""
-        self.where_id = ""
+        self.where_event = ""
         self.latitude = ""
         self.longitude = ""
         self.promotor = ""
@@ -203,11 +203,11 @@
         self.category_name = ""
     }
     
-    var id: String {
+    var event_id: Int {
         get {
-            return _id
+            return _event_id
         } set(id) {
-            self._id = id
+            self._event_id = event_id
         }
     }
     
@@ -230,11 +230,11 @@
     }
     
     
-    var where_id: String {
+    var where_event: String {
         get {
-            return self._where_id
-        } set(where_id) {
-            self._where_id = where_id
+            return self._where_event
+        } set(where_event) {
+            self._where_event = where_event
         }
     }
     
@@ -345,7 +345,7 @@
     }
     
     
-    var user_id: String {
+    var user_id: Int {
         get {
             return self._user_id
         } set(user_id) {
@@ -379,22 +379,22 @@
         
         
         category = [
-            "category_id": category_id as AnyObject,
-            "category_name": category_name as AnyObject
+            "id": category_id as AnyObject,
+            "name": category_name as AnyObject
         ]
         
         
         user = [
-            "user_id": user_id as AnyObject,
-            "user_email": user_email as AnyObject,
-            "user_name": user_name as AnyObject
+            "id": user_id as AnyObject,
+            "email": user_email as AnyObject,
+            "name": user_name as AnyObject
         ]
         
         
         json = [
-            "id": id as AnyObject,
+            "id": event_id as AnyObject,
             "what": what as AnyObject,
-            "where": where_id as AnyObject,
+            "where": where_event as AnyObject,
             "start_date": start_date as AnyObject,
             "end_date":end_date as AnyObject,
             "price": price as AnyObject,
@@ -412,4 +412,3 @@
         return json
     }
  }
-

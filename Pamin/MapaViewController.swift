@@ -54,8 +54,28 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         anotacaoView.frame = frame
         anotacaoView.canShowCallout = true
         
+        // Adicionando botão
+        let btn = UIButton(type: .detailDisclosure)
+        anotacaoView.rightCalloutAccessoryView = btn
+        
         return anotacaoView
     }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if control == view.rightCalloutAccessoryView{
+            let anotacao = view.annotation as! EventoAnotacao
+            let evento = anotacao.evento
+            performSegue(withIdentifier: "detalhesEventoSegue", sender: evento)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detalhesEventoSegue"{
+            let viewControllerDestino = segue.destination as! DetalhesEventoViewController
+            viewControllerDestino.evento = sender as! Event
+        }
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         

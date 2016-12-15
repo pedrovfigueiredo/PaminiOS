@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logoComNome" translatesAutoresizingMaskIntoConstraints="NO" id="UAs-Z6-f6k">
-                                <rect key="frame" x="39" y="162" width="296" height="235"/>
+                                <rect key="frame" x="73" y="242" width="229" height="182"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>

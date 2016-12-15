@@ -32,10 +32,6 @@ class PaminAPI {
                         let entry = Event(data: item)
                         self.events.append(entry)
                     }
-                    print(resposta.result)
-                    for event in self.events {
-                        print(event.category_id)
-                    }
                     completion(self.events)
                 }
             
