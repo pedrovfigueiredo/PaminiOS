@@ -30,19 +30,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         eventosTableView.delegate = self
         eventosTableView.dataSource = self
         
-        
+        atualizarDados()
+
+    }
+    
+    func atualizarDados(){
         api.popularArrayDeEvents { (events) in
-            self.events = events
-            self.coreDataEvents.salvarEventosEmBD(eventos: self.events)
+            self.coreDataEvents.salvarEventosEmBD(eventos: events)
+            self.events = self.coreDataEvents.recuperarTodosEventos()
             self.eventosTableView.reloadData()
         }
     }
     
     func refresh(_ refreshControl: UIRefreshControl) {
-        api.popularArrayDeEvents { (events) in
-            self.events = events
-            self.eventosTableView.reloadData()
-        }
+        atualizarDados()
         refreshControl.endRefreshing()
     }
     

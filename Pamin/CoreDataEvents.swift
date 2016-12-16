@@ -12,6 +12,8 @@ import CoreData
 
 class CoreDataEvents {
     
+    let indexKey = "INDICE_EVENTOS"
+    
     // Recuperar contexto
     func getContext() -> NSManagedObjectContext{
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -20,8 +22,23 @@ class CoreDataEvents {
     }
     
     func salvarEventosEmBD(eventos: [Event]){
-        for evento in eventos {
-            self.salvarEvento(evento: evento)
+        
+        var indiceUltimoEvento: Int
+        
+        if UserDefaults.standard.object(forKey: indexKey) != nil{
+            
+            indiceUltimoEvento = UserDefaults.standard.object(forKey: indexKey) as! Int
+            
+            for evento in eventos {
+                if evento.event_id > indiceUltimoEvento{
+                    self.salvarEvento(evento: evento)
+                }
+            }
+        }else{
+            for evento in eventos {
+                self.salvarEvento(evento: evento)
+            }
+            UserDefaults.standard.set(eventos.last?.event_id, forKey: indexKey)
         }
         
         do{
@@ -65,7 +82,6 @@ class CoreDataEvents {
                 let evento = Event(eventoCoreData: eventoCoredata)
                 eventos.append(evento)
             }
-            
             return eventos
         }catch{
             print("Erro ao recuperar eventos do banco de dados")

@@ -28,9 +28,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.eventos.removeAll()
         self.eventos = coreDataEvents.recuperarTodosEventos()
-        print(eventos)
         self.marcarAnotacoes()
     }
     

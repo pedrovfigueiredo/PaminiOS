@@ -91,12 +91,12 @@
 				2A266DD71E03101D0043DDAC /* DetalhesEventoViewController.swift */,
 				2A79C8B81E0078DE00352289 /* MapaViewController.swift */,
 				2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */,
+				2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */,
 				2A7AC00E1E006D8900E87767 /* Main.storyboard */,
 				2A7AC0111E006D8900E87767 /* Assets.xcassets */,
 				2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */,
 				2A7AC0161E006D8900E87767 /* Info.plist */,
 				2A266DDB1E0314160043DDAC /* Pamin.xcdatamodeld */,
-				2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */,
 			);
 			path = Pamin;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 				TargetAttributes = {
 					2A7AC0061E006D8900E87767 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = HTVUAXFD35;
+						DevelopmentTeam = DF495Z7ZDS;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -379,11 +379,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HTVUAXFD35;
+				DEVELOPMENT_TEAM = DF495Z7ZDS;
 				INFOPLIST_FILE = Pamin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ufpb.lavid;
+				PRODUCT_BUNDLE_IDENTIFIER = pedrofigueiredo.lavid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -396,11 +396,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HTVUAXFD35;
+				DEVELOPMENT_TEAM = DF495Z7ZDS;
 				INFOPLIST_FILE = Pamin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ufpb.lavid;
+				PRODUCT_BUNDLE_IDENTIFIER = pedrofigueiredo.lavid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
