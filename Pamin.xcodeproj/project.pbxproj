@@ -13,7 +13,6 @@
 		2A266DD81E03101D0043DDAC /* DetalhesEventoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A266DD71E03101D0043DDAC /* DetalhesEventoViewController.swift */; };
 		2A266DDA1E03128E0043DDAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A266DD91E03128E0043DDAC /* CoreData.framework */; };
 		2A266DDD1E0314160043DDAC /* Pamin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A266DDB1E0314160043DDAC /* Pamin.xcdatamodeld */; };
-		2A266DEA1E0326920043DDAC /* CoreDataEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A266DE91E0326920043DDAC /* CoreDataEvents.swift */; };
 		2A79C8B91E0078DE00352289 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A79C8B81E0078DE00352289 /* MapaViewController.swift */; };
 		2A7AC00B1E006D8900E87767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AC00A1E006D8900E87767 /* AppDelegate.swift */; };
 		2A7AC00D1E006D8900E87767 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AC00C1E006D8900E87767 /* ViewController.swift */; };
@@ -22,6 +21,7 @@
 		2A7AC0151E006D8900E87767 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */; };
 		2A8274E71E008E7500E5A2B2 /* PaminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */; };
 		2AA45E191E0089A800D5C790 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45E181E0089A800D5C790 /* Event.swift */; };
+		2ABE40BF1E0435E900123F1D /* CoreDataEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */; };
 		2B8D6FE3D7953733E63A2EDC /* Pods_Pamin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB13ACE22C1CFEBFF2D2B1E /* Pods_Pamin.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +33,6 @@
 		2A266DD71E03101D0043DDAC /* DetalhesEventoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhesEventoViewController.swift; sourceTree = "<group>"; };
 		2A266DD91E03128E0043DDAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2A266DDC1E0314160043DDAC /* Pamin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pamin.xcdatamodel; sourceTree = "<group>"; };
-		2A266DE91E0326920043DDAC /* CoreDataEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataEvents.swift; sourceTree = "<group>"; };
 		2A79C8B81E0078DE00352289 /* MapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		2A7AC0071E006D8900E87767 /* Pamin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pamin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7AC00A1E006D8900E87767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +43,7 @@
 		2A7AC0161E006D8900E87767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaminAPI.swift; sourceTree = "<group>"; };
 		2AA45E181E0089A800D5C790 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataEvents.swift; sourceTree = "<group>"; };
 		6F2C1E735552303C4977FE3C /* Pods-Pamin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pamin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pamin/Pods-Pamin.release.xcconfig"; sourceTree = "<group>"; };
 		7039FED8A67D020ED15D2B86 /* Pods-Pamin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pamin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pamin/Pods-Pamin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,12 +91,12 @@
 				2A266DD71E03101D0043DDAC /* DetalhesEventoViewController.swift */,
 				2A79C8B81E0078DE00352289 /* MapaViewController.swift */,
 				2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */,
-				2A266DE91E0326920043DDAC /* CoreDataEvents.swift */,
 				2A7AC00E1E006D8900E87767 /* Main.storyboard */,
 				2A7AC0111E006D8900E87767 /* Assets.xcassets */,
 				2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */,
 				2A7AC0161E006D8900E87767 /* Info.plist */,
 				2A266DDB1E0314160043DDAC /* Pamin.xcdatamodeld */,
+				2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */,
 			);
 			path = Pamin;
 			sourceTree = "<group>";
@@ -250,7 +250,7 @@
 				2A8274E71E008E7500E5A2B2 /* PaminAPI.swift in Sources */,
 				2A0F0DC21E009728004C7C8A /* CelulaEvento.swift in Sources */,
 				2A0C3A521E01CD6F0006173C /* EventoAnotacao.swift in Sources */,
-				2A266DEA1E0326920043DDAC /* CoreDataEvents.swift in Sources */,
+				2ABE40BF1E0435E900123F1D /* CoreDataEvents.swift in Sources */,
 				2A266DD81E03101D0043DDAC /* DetalhesEventoViewController.swift in Sources */,
 				2A7AC00B1E006D8900E87767 /* AppDelegate.swift in Sources */,
 				2A266DDD1E0314160043DDAC /* Pamin.xcdatamodeld in Sources */,

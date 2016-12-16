@@ -2,10 +2,11 @@
 //  CoreDataEvents.swift
 //  Pamin
 //
-//  Created by Pedro Figueirêdo on 15/12/16.
+//  Created by Pedro Figueirêdo on 16/12/16.
 //  Copyright © 2016 Lavid. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import CoreData
 
@@ -17,50 +18,59 @@ class CoreDataEvents {
         let context = appDelegate?.persistentContainer.viewContext
         return context!
     }
-    /*
-    // Adicionar todos os Eventos
-    func adicionarTodosEventos(){
+    
+    func salvarEventosEmBD(eventos: [Event]){
+        for evento in eventos {
+            self.salvarEvento(evento: evento)
+        }
         
-        self.criarPokemon(nome: "Mew", nomeImagem: "mew", capturado: false)
-        self.criarPokemon(nome: "Meowth", nomeImagem: "meowth", capturado: false)
-        self.criarPokemon(nome: "Abra", nomeImagem: "abra", capturado: false)
-        self.criarPokemon(nome: "Bellsprout", nomeImagem: "bellsprout", capturado: false)
-        self.criarPokemon(nome: "Bullbasaur", nomeImagem: "bullbasaur", capturado: false)
-        self.criarPokemon(nome: "Caterpie", nomeImagem: "caterpie", capturado: false)
-        self.criarPokemon(nome: "Charmander", nomeImagem: "charmander", capturado: false)
-        self.criarPokemon(nome: "Dratini", nomeImagem: "dratini", capturado: false)
-        self.criarPokemon(nome: "Eevee", nomeImagem: "eevee", capturado: false)
-        self.criarPokemon(nome: "Jigglypuff", nomeImagem: "jigglypuff", capturado: false)
-        self.criarPokemon(nome: "Mankey", nomeImagem: "mankey", capturado: false)
-        self.criarPokemon(nome: "Pidgey", nomeImagem: "pidgey", capturado: false)
-        self.criarPokemon(nome: "Pikachu", nomeImagem: "pikachu-2", capturado: false)
-        self.criarPokemon(nome: "Psyduck", nomeImagem: "psyduck", capturado: false)
-        self.criarPokemon(nome: "Rattata", nomeImagem: "rattata", capturado: false)
-        self.criarPokemon(nome: "Snorlax", nomeImagem: "snorlax", capturado: false)
-        self.criarPokemon(nome: "Squirtle", nomeImagem: "squirtle", capturado: false)
-        self.criarPokemon(nome: "Venonat", nomeImagem: "venonat", capturado: false)
-        self.criarPokemon(nome: "Weedle", nomeImagem: "weedle", capturado: false)
-        self.criarPokemon(nome: "Zubat", nomeImagem: "zubat", capturado: false)
-        
-        let context = self.getContext()
         do{
+            let context = getContext()
             try context.save()
-        }catch{
-            print("Erro ao salvar os pokémons")
+        }catch {
+            print("Erro ao salvar eventos no Banco.")
         }
     }
     
-    // Criar evento
-    func criarEvento(nome: String, nomeImagem: String, capturado: Bool){
+    // Salvar evento
+    func salvarEvento(evento: Event){
+        let eventoCoreData = Evento(context: self.getContext())
+        
+        eventoCoreData.category_id = Int16(evento.category_id)
+        eventoCoreData.category_name = evento.category_name
+        eventoCoreData.created_at = evento.created_at
+        eventoCoreData.description_event = evento.description
+        eventoCoreData.end_date = evento.end_date
+        eventoCoreData.event_id = Int16(evento.event_id)
+        eventoCoreData.latitude = evento.latitude
+        eventoCoreData.longitude = evento.longitude
+        eventoCoreData.pictures = evento.pictures
+        eventoCoreData.price = evento.price
+        eventoCoreData.promotor = evento.promotor
+        eventoCoreData.promotor_contact = evento.promotor_contact
+        eventoCoreData.start_date = evento.start_date
+        eventoCoreData.updated_at = evento.updated_at
+        eventoCoreData.what = evento.what
+        eventoCoreData.where_ = evento.where_event
+    }
+    
+    // Recuperar todos os Eventos
+    func recuperarTodosEventos() -> [Event]{
         
         let context = self.getContext()
-        let pokemon = Pokemon(context: context)
-        
-        pokemon.nome = nome
-        pokemon.nomeImagem = nomeImagem
-        pokemon.capturado = capturado
-        pokemon.quantidade = 0
+        do{
+            var eventos : [Event] = []
+            let eventosCoreData = try context.fetch(Evento.fetchRequest()) as! [Evento]
+            for eventoCoredata in eventosCoreData {
+                let evento = Event(eventoCoreData: eventoCoredata)
+                eventos.append(evento)
+            }
+            
+            return eventos
+        }catch{
+            print("Erro ao recuperar eventos do banco de dados")
+        }
+        return []
     }
-    */
     
 }

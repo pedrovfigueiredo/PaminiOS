@@ -183,6 +183,26 @@
         
     }
     
+    init(eventoCoreData: Evento) {
+        
+        self._category_id = Int(eventoCoreData.category_id)
+        self._category_name = eventoCoreData.category_name!
+        self._created_at = eventoCoreData.created_at
+        self._description = eventoCoreData.description_event
+        self._end_date = eventoCoreData.end_date
+        self._event_id = Int(eventoCoreData.event_id)
+        self._latitude = eventoCoreData.latitude
+        self._longitude = eventoCoreData.longitude
+        self._pictures = eventoCoreData.pictures
+        self._price = eventoCoreData.price
+        self._promotor = eventoCoreData.promotor
+        self._promotor_contact = eventoCoreData.promotor_contact
+        self._start_date = eventoCoreData.start_date
+        self._updated_at = eventoCoreData.updated_at
+        self._what = eventoCoreData.what
+        self._where_event = eventoCoreData.where_
+    }
+    
     
     init(){
         self.event_id = 0

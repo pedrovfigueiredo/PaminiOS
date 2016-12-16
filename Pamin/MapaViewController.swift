@@ -14,7 +14,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     var gerenciadorLocalizacao = CLLocationManager()
     var eventos : [Event] = []
     var isFirstCall: Bool = true
-    let api = PaminAPI()
+    let coreDataEvents = CoreDataEvents()
     
     @IBOutlet weak var mapa: MKMapView!
     
@@ -24,6 +24,14 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         self.configurarGerenciadorLocalizacao()
         mapa.delegate = self
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.eventos.removeAll()
+        self.eventos = coreDataEvents.recuperarTodosEventos()
+        print(eventos)
+        self.marcarAnotacoes()
     }
     
     func marcarAnotacoes(){
@@ -76,17 +84,6 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
     }
 
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-        self.eventos.removeAll()
-        
-        api.popularArrayDeEvents { (events) in
-            self.eventos = events
-            self.marcarAnotacoes()
-        }
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if isFirstCall == true{

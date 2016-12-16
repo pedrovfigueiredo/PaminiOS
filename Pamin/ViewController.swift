@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var eventosTableView: UITableView!
     var events : [Event] = []
     let api = PaminAPI()
+    let coreDataEvents = CoreDataEvents()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         api.popularArrayDeEvents { (events) in
             self.events = events
+            self.coreDataEvents.salvarEventosEmBD(eventos: self.events)
             self.eventosTableView.reloadData()
         }
     }
