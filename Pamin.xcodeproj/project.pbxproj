@@ -128,6 +128,7 @@
 				2A266DDB1E0314160043DDAC /* Pamin.xcdatamodeld */,
 				2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */,
 				2A7AC0161E006D8900E87767 /* Info.plist */,
+				FFF009161E081AB300AC8A35 /* Pamin-Bridging-Header.h */,
 				2A9601CC1E291FE100247016 /* EZLoadingActivity */,
 				FF4D35511E25554F0014FD6D /* Eureka Helper */,
 				FF7878E31E0804B80080C202 /* SWRevealViewController */,
@@ -178,7 +179,6 @@
 			children = (
 				FFF009171E081AB300AC8A35 /* SWRevealViewController.h */,
 				FFF009181E081AB300AC8A35 /* SWRevealViewController.m */,
-				FFF009161E081AB300AC8A35 /* Pamin-Bridging-Header.h */,
 			);
 			name = SWRevealViewController;
 			sourceTree = "<group>";

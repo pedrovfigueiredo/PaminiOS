@@ -20,17 +20,6 @@ class PaminAPI {
     let PAMINLOGOUT: String = "auth/sign_out"
     let PAMINSIGNUP: String = "users"
     
-    /*
-    let CLD_CLOUD_NAME = "pamin-lavid"
-    let CLD_API_KEY = "151222191242598"
-    
-    
-    func uploadImages(){
-        let config = CLDConfiguration(cloudName: CLD_CLOUD_NAME, apiKey: CLD_API_KEY)
-        let cloudinary = CLDCloudinary(configuration: config)
-        
-        print(cloudinary)
-    }*/
     
     func popularArrayDeEvents(completion: @escaping ([Event])->()) {
         self.events.removeAll()
