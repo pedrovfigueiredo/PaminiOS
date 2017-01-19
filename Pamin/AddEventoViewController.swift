@@ -47,6 +47,11 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
         
         EZLoadingActivity.show("Adicionando...", disableUI: true)
         
+        if !(PaminAPI().isInternetAvailable()){
+            EZLoadingActivity.hide()
+            self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
+        }
+        
         self.formToEvent { () in
             
             
@@ -541,6 +546,15 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             present(alertaController, animated: true, completion: nil)
             
         }
+    }
+    
+    func displayAlert(title: String, message : String){
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+        
+        controller.addAction(action)
+        
+        self.present(controller, animated: true, completion: nil)
     }
     
 }

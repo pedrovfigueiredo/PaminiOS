@@ -38,6 +38,25 @@ class MenuController: UITableViewController {
         
         arrendondarImagens()
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.revealViewController().view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        self.revealViewController().frontViewController.revealViewController().tapGestureRecognizer()
+        self.revealViewController().frontViewController.view.isUserInteractionEnabled = false
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.revealViewController().frontViewController.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+        self.revealViewController().frontViewController.view.isUserInteractionEnabled = true
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         if UserDefaults.standard.object(forKey: "telaOrigem") != nil {
             self.telaOrigem = UserDefaults.standard.object(forKey: "telaOrigem") as! Int

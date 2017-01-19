@@ -41,9 +41,9 @@ class EventoAnotacao: NSObject, MKAnnotation{
         default: break
         }
         
-        // Se for default, todos serão pessoas
+        // Se for default, retorna imagem default
         
-        return #imageLiteral(resourceName: "Pessoas")
+        return #imageLiteral(resourceName: "tudo")
     }
     
 }

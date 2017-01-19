@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Cloudinary.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Eureka.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,17 +32,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>098E7BA5A3E8A94E41C40FB38292169B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C0D26E3B70F4A3C6F5B89E1989C20A2</key>
+		<key>897F87A4A0388BD12C3C381F9D52ECED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B73BCDEF9A0F5C673B02EDA6ED8BD101</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C3D3AAEF929A3AE69CE571A106CD40DB</key>
 		<dict>
 			<key>primary</key>
 			<true/>

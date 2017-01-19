@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import SystemConfiguration
 
 class PaminAPI {
     
@@ -17,6 +18,19 @@ class PaminAPI {
     let PAMINEVENTOS: String = "registers.json"
     let PAMINLOGIN: String = "auth/sign_in"
     let PAMINLOGOUT: String = "auth/sign_out"
+    let PAMINSIGNUP: String = "users"
+    
+    /*
+    let CLD_CLOUD_NAME = "pamin-lavid"
+    let CLD_API_KEY = "151222191242598"
+    
+    
+    func uploadImages(){
+        let config = CLDConfiguration(cloudName: CLD_CLOUD_NAME, apiKey: CLD_API_KEY)
+        let cloudinary = CLDCloudinary(configuration: config)
+        
+        print(cloudinary)
+    }*/
     
     func popularArrayDeEvents(completion: @escaping ([Event])->()) {
         self.events.removeAll()
@@ -59,6 +73,7 @@ class PaminAPI {
     func cadastrarNovoEvento(evento: Event, completion: @escaping (DataResponse<Data>)->()){
         let URL = PAMINAPI + PAMINEVENTOS
         let eventJSON = eventToJSON(event: evento)
+        print(eventJSON.description)
         let headers = self.getUserHeader(user: CoreDataEvents().recuperarUsuarioLogado())
         
         //print("Evento: \(eventJSON), Headers: \(headers)")
@@ -70,10 +85,21 @@ class PaminAPI {
      }
     
     
+    func userSignUp(nome: String, email: String, password: String, completion: @escaping (DataResponse<Any>)->()){
+        
+        let userJSON = userSignUpToJSON(nome: nome, email: email, password: password)
+        let URL = PAMINAPI + PAMINSIGNUP
+        
+        Alamofire.request(URL, method: .post, parameters: userJSON, encoding: JSONEncoding.default, headers: nil)
+            .responseJSON { (response) in
+                completion(response)
+        }
+    }
+    
     
     func userLogin(email:String, password: String, completion: @escaping (User)->()){
         
-        let userJSON = userToJSON(email: email, password: password)
+        let userJSON = userLogInToJSON(email: email, password: password)
         let URL = PAMINAPI + PAMINLOGIN
         
         Alamofire.request(URL, method: .post , parameters: userJSON, encoding: JSONEncoding.default, headers: nil)
@@ -101,6 +127,7 @@ class PaminAPI {
     // Quando samuel implementar os outros parâmetros, lembrar de atualizar
     func eventToJSON(event: Event) -> Parameters{
         
+        
         let eventoJSON = [
             //"id": event.event_id,
             "what": event.what,
@@ -113,7 +140,7 @@ class PaminAPI {
             "latitude": Double(event.latitude)!,
             "longitude": Double(event.longitude)!,
             "description": event.description,
-            //"pictures": event.pictures,
+            "pictures": ["http://res.cloudinary.com/demo/image/upload/sample.jpg","http://res.samuel.com"],
             "category_id": event.category_id
             ] as Parameters
         
@@ -121,7 +148,19 @@ class PaminAPI {
     }
     
     
-    func userToJSON(email: String, password: String) -> Parameters{
+    func userSignUpToJSON(nome: String, email: String, password: String) -> Parameters{
+        
+        let userJSON = [
+            "name": nome,
+            "email": email,
+            "password": password
+        ] as Parameters
+        
+        return userJSON
+    }
+    
+    
+    func userLogInToJSON(email: String, password: String) -> Parameters{
         
         let userJSON = [
             "api_user": [
@@ -130,6 +169,27 @@ class PaminAPI {
             ] as Parameters
         
         return userJSON
+    }
+    
+    func isInternetAvailable() -> Bool
+    {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        
+        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
+                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
+            }
+        }
+        
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }
 

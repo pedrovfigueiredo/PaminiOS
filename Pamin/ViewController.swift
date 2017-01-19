@@ -83,8 +83,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // ATUALIZAR DADOS COM BANCO ONLINE (GESTO DE ARRASTAR TABLEVIEW PARA BAIXO)
     
     func refresh(_ refreshControl: UIRefreshControl) {
-        atualizarDados()
-        refreshControl.endRefreshing()
+        
+        if !(api.isInternetAvailable()){
+            let controller = UIAlertController(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
+                refreshControl.endRefreshing()
+            }
+            controller.addAction(action)
+            self.present(controller, animated: true, completion: nil)
+            
+        }else{
+            atualizarDados()
+            refreshControl.endRefreshing()
+        }
     }
     
     func atualizarDados(){

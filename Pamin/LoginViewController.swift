@@ -51,14 +51,15 @@ class LoginViewController: UIViewController {
         EZLoadingActivity.show("Entrando...", disableUI: true)
         
         let api = PaminAPI()
+        if !(api.isInternetAvailable()){
+            EZLoadingActivity.hide()
+            self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
+        }
+        
         api.userLogin(email: self.usuarioTextField.text!, password: self.senhaTextField.text!) { (user) in
             if user.user_token == "" { //Failure
-                
-                let alertController = UIAlertController(title: "Erro de Autenticação", message: "Usuário e/ou senha incorretos. Tente novamente.", preferredStyle: .alert)
-                let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alertController.addAction(alertAction)
                 EZLoadingActivity.hide()
-                self.present(alertController, animated: true, completion: nil)
+                self.displayAlert(title: "Erro de Autenticação", message: "Usuário e/ou senha incorretos. Tente novamente.")
                 
             }else{ // Success
                 
@@ -72,5 +73,14 @@ class LoginViewController: UIViewController {
             
         }
         
+    }
+    
+    func displayAlert(title: String, message : String){
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+        
+        controller.addAction(action)
+        
+        self.present(controller, animated: true, completion: nil)
     }
 }

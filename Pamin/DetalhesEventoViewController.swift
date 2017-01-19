@@ -41,6 +41,7 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         //Imagem
         imagemEvento.image = evento.recuperarImagemEvento(evento: evento)
         //bgImagemEvento.image = evento.recuperarImagemEvento(evento: evento)
+
         
         // Endereço
         whereLabel.text = evento.where_event
@@ -150,7 +151,7 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         let anotacaoView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
         
         if annotation is MKUserLocation { // mostrar usuario
-            
+            return nil
         }else{ // mostrar evento
             let eventoAnotacao  = (annotation as! EventoAnotacao)
             anotacaoView.image = eventoAnotacao.getImageAnotacao()

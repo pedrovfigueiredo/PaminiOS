@@ -7,29 +7,151 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RegisterViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var nomeLabel: UITextField!
+    @IBOutlet weak var emailLabel: UITextField!
+    @IBOutlet weak var senhaLabel: UITextField!
+    @IBOutlet weak var repitaSenhaLabel: UITextField!
+    @IBOutlet weak var cadastrarButton: UIButton!
+    @IBOutlet weak var voltarButton: UIButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        cadastrarButton.layer.cornerRadius = 15.0
+        voltarButton.layer.cornerRadius = 15.0
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(RegisterViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        
+        view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func signUp(_ sender: Any) {
+        
+        if !(PaminAPI().isInternetAvailable()){
+            self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
+        }
+        let mensagemAlerta = checkFields()
+        
+        if mensagemAlerta == ""{
+            
+            EZLoadingActivity.show("Cadastrando...", disableUI: true)
+            PaminAPI().userSignUp(nome: nomeLabel.text!, email: emailLabel.text!, password: senhaLabel.text!, completion: { (response) in
+                switch (response.result) {
+                case .success(let data):
+                    if self.isValid(data: JSON(data)){
+                        EZLoadingActivity.hide(true, animated: true)
+                        
+                        //Ir para tela de login
+                        let alertController = UIAlertController(title: "Sucesso", message: "Usuário cadastrado com sucesso.", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                            self.performSegue(withIdentifier: "backtoLogin", sender: nil)
+                        })
+                        alertController.addAction(alertAction)
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }else{
+                        EZLoadingActivity.hide(false, animated: true)
+                        let errors = self.getErrors(data: JSON(data))
+                        self.displayAlert(title: "Erro", message: String(describing: errors))
+                        
+                    }
+                case .failure(let error):
+                    EZLoadingActivity.hide()
+                    self.displayAlert(title: "Erro", message: "Erro ao registrar usuário. Por favor, tente novamente mais tarde. Código do erro: \(error)")
+                
+                }
+            })
+            
+        }else{
+            self.displayAlert(title: "Erro", message: mensagemAlerta)
+        }
     }
-    */
-
+    
+    func getErrors(data: JSON) -> [String]{
+        if let errors = data["errors"].arrayObject {
+            return errors as! [String]
+        }
+        return []
+    }
+    
+    // Se houve um campo "user" no json de resposta, é válido.
+    func isValid(data: JSON) -> Bool{
+        
+        if data["user"].dictionary != nil {
+            return true
+        }
+        return false
+    }
+    
+    func displayAlert(title: String, message : String){
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+        
+        controller.addAction(action)
+        
+        self.present(controller, animated: true, completion: nil)
+    }
+    
+    
+    func checkFields() -> String{
+        
+        var mensagemAlerta : String = ""
+        
+        if (nomeLabel.text?.characters.count)! <= 4 {
+            mensagemAlerta.append("O nome tem que ter mais de 4 caracteres.")
+            nomeLabel.text = ""
+        }
+        
+        if !(isValidEmail(testStr: emailLabel.text!)) {
+            if mensagemAlerta != ""{mensagemAlerta.append("\n")}
+            mensagemAlerta.append("Email inválido.")
+            emailLabel.text = ""
+        }
+        
+        if (senhaLabel.text?.characters.count)! < 8 {
+            if mensagemAlerta != ""{mensagemAlerta.append("\n")}
+            mensagemAlerta.append("A senha tem que ter pelo menos 8 caracteres.")
+            senhaLabel.text = ""
+            repitaSenhaLabel.text = ""
+        }else{
+            if senhaLabel.text != repitaSenhaLabel.text {
+                if mensagemAlerta != ""{mensagemAlerta.append("\n")}
+                mensagemAlerta.append("Senhas não coincidem.")
+                senhaLabel.text = ""
+                repitaSenhaLabel.text = ""
+            }
+        }
+        return mensagemAlerta
+    }
+    
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    
+    @IBAction func backtoLogin(_ sender: Any) {
+        performSegue(withIdentifier: "backtoLogin", sender: nil)
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
 }
+

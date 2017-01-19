@@ -76,7 +76,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let anotacaoView = MKAnnotationView(annotation: annotation, reuseIdentifier: nil)
         
         if annotation is MKUserLocation { // mostrar usuario
-            return anotacaoView
+            return nil
         }else{ // mostrar evento
             let eventoAnotacao  = (annotation as! EventoAnotacao)
             anotacaoView.image = eventoAnotacao.getImageAnotacao()

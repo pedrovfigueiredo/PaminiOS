@@ -15,6 +15,7 @@
 		2A266DD81E03101D0043DDAC /* DetalhesEventoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A266DD71E03101D0043DDAC /* DetalhesEventoViewController.swift */; };
 		2A266DDA1E03128E0043DDAC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A266DD91E03128E0043DDAC /* CoreData.framework */; };
 		2A266DDD1E0314160043DDAC /* Pamin.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A266DDB1E0314160043DDAC /* Pamin.xcdatamodeld */; };
+		2A2F8B4D1E2FC1CC00CA2351 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2F8B4C1E2FC1CC00CA2351 /* RegisterViewController.swift */; };
 		2A79C8B91E0078DE00352289 /* MapaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A79C8B81E0078DE00352289 /* MapaViewController.swift */; };
 		2A7AC00B1E006D8900E87767 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AC00A1E006D8900E87767 /* AppDelegate.swift */; };
 		2A7AC00D1E006D8900E87767 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AC00C1E006D8900E87767 /* ViewController.swift */; };
@@ -26,7 +27,6 @@
 		2A9601CB1E291FCE00247016 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9601CA1E291FCE00247016 /* EZLoadingActivity.swift */; };
 		2AA45E191E0089A800D5C790 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45E181E0089A800D5C790 /* Event.swift */; };
 		2ABE40BF1E0435E900123F1D /* CoreDataEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */; };
-		2AF7786F1E2F04DE004E6365 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF7786E1E2F04DE004E6365 /* RegisterViewController.swift */; };
 		2B8D6FE3D7953733E63A2EDC /* Pods_Pamin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB13ACE22C1CFEBFF2D2B1E /* Pods_Pamin.framework */; };
 		FF2C23391E2553FE00FD1544 /* AddEventoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2C23381E2553FE00FD1544 /* AddEventoViewController.swift */; };
 		FF4D35501E2555400014FD6D /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4D354F1E2555400014FD6D /* CustomCells.swift */; };
@@ -47,6 +47,7 @@
 		2A266DD71E03101D0043DDAC /* DetalhesEventoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhesEventoViewController.swift; sourceTree = "<group>"; };
 		2A266DD91E03128E0043DDAC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2A266DDC1E0314160043DDAC /* Pamin.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pamin.xcdatamodel; sourceTree = "<group>"; };
+		2A2F8B4C1E2FC1CC00CA2351 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		2A79C8B81E0078DE00352289 /* MapaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapaViewController.swift; sourceTree = "<group>"; };
 		2A7AC0071E006D8900E87767 /* Pamin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pamin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7AC00A1E006D8900E87767 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		2A9601CA1E291FCE00247016 /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
 		2AA45E181E0089A800D5C790 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataEvents.swift; sourceTree = "<group>"; };
-		2AF7786E1E2F04DE004E6365 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		6F2C1E735552303C4977FE3C /* Pods-Pamin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pamin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pamin/Pods-Pamin.release.xcconfig"; sourceTree = "<group>"; };
 		7039FED8A67D020ED15D2B86 /* Pods-Pamin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pamin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pamin/Pods-Pamin.debug.xcconfig"; sourceTree = "<group>"; };
 		FF2C23381E2553FE00FD1544 /* AddEventoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventoViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 				2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */,
 				2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */,
 				2A0F0DC31E0098F4004C7C8A /* LoginViewController.swift */,
-				2AF7786E1E2F04DE004E6365 /* RegisterViewController.swift */,
+				2A2F8B4C1E2FC1CC00CA2351 /* RegisterViewController.swift */,
 				2A0F0DC11E009728004C7C8A /* CelulaEvento.swift */,
 				2A7AC00C1E006D8900E87767 /* ViewController.swift */,
 				2A0C3A511E01CD6F0006173C /* EventoAnotacao.swift */,
@@ -310,7 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFB8CE441E256A8F00106C38 /* ImageRow.swift in Sources */,
-				2AF7786F1E2F04DE004E6365 /* RegisterViewController.swift in Sources */,
+				2A2F8B4D1E2FC1CC00CA2351 /* RegisterViewController.swift in Sources */,
 				FFF009191E081AB300AC8A35 /* SWRevealViewController.m in Sources */,
 				FF2C23391E2553FE00FD1544 /* AddEventoViewController.swift in Sources */,
 				2A0F0DC41E0098F4004C7C8A /* LoginViewController.swift in Sources */,
