@@ -29,7 +29,7 @@ public struct RuleRequired<T: Equatable>: RuleType {
     public init(){}
     
     public var id: String?
-    public var validationError = ValidationError(msg: "Field required!")
+    public var validationError = ValidationError(msg: "Campo Obrigatório!")
     
     public func isValid(value: T?) -> ValidationError? {
         if let str = value as? String {

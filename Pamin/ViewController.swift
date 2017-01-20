@@ -121,6 +121,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "detalhesEventoSegue"{
+            
             let viewControllerDestino = segue.destination as! DetalhesEventoViewController
             viewControllerDestino.evento = sender as! Event!
         }

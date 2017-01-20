@@ -15,7 +15,7 @@ class PaminAPI {
     
     var events = [Event]()
     let PAMINAPI : String = "http://pamin.lavid.ufpb.br:80/api/"
-    let PAMINEVENTOS: String = "registers.json"
+    let PAMINEVENTOS: String = "registers/"
     let PAMINLOGIN: String = "auth/sign_in"
     let PAMINLOGOUT: String = "auth/sign_out"
     let PAMINSIGNUP: String = "users"
@@ -43,6 +43,18 @@ class PaminAPI {
                 }
         }
     }
+    
+    func recuperarEventoBD(event_id: Int, completion: @escaping (Event)->()){
+        let URL = PAMINAPI + PAMINEVENTOS + String(event_id)
+        
+        Alamofire.request(URL)
+            .responseJSON { (response) in
+                if let json = response.result.value as? JSONDictionary {
+                    let event = Event(data: json)
+                    completion(event)
+                }
+        }
+    }
 
     
     func userLogout(usuario: User){
@@ -62,10 +74,8 @@ class PaminAPI {
     func cadastrarNovoEvento(evento: Event, completion: @escaping (DataResponse<Data>)->()){
         let URL = PAMINAPI + PAMINEVENTOS
         let eventJSON = eventToJSON(event: evento)
-        print(eventJSON.description)
         let headers = self.getUserHeader(user: CoreDataEvents().recuperarUsuarioLogado())
         
-        //print("Evento: \(eventJSON), Headers: \(headers)")
      
         Alamofire.request(URL, method: .post, parameters: eventJSON, encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in

@@ -7,6 +7,7 @@ target 'Pamin' do
 
   # Pods for Pamin
   pod 'Alamofire', '~> 4.0.1’
+  pod 'AlamofireImage', '~> 3.1'
   pod 'SwiftyJSON'
   pod 'Eureka', '~> 2.0.0-beta.1'
 
