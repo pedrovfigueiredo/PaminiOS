@@ -9,7 +9,7 @@
         <attribute name="event_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pictures" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictures" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="promotor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="promotor_contact" optional="YES" attributeType="String" syncable="YES"/>

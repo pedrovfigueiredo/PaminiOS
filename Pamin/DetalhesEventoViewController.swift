@@ -39,8 +39,13 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         mapaDescricaoEvento.isScrollEnabled = false
         
         //Imagem
-        imagemEvento.image = evento.recuperarImagemEvento(evento: evento)
-        //bgImagemEvento.image = evento.recuperarImagemEvento(evento: evento)
+        if !evento.pictures.isEmpty {
+            let url = URL(string: evento.pictures.first!)
+            
+            imagemEvento.af_setImage(withURL: url!, placeholderImage: evento.recuperarImagemPadraoEvento(evento: evento), filter: nil, progress: nil, progressQueue: DispatchQueue.global(), imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
+        }else{
+            imagemEvento.image = evento.recuperarImagemPadraoEvento(evento: evento)
+        }
 
         
         // Endereço

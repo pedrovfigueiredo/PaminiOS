@@ -22,7 +22,7 @@
     private var _longitude: String!
     private var _promotor: String!
     private var _promotor_contact: String!
-    private var _pictures: String!
+    private var _pictures: [String]!
     private var _description: String!
     private var _price: String!
     
@@ -105,9 +105,14 @@
         
         
         if let pictures = data["pictures"] as? String {
-            self._pictures = pictures;
+            if pictures == "" || pictures == "{}" || pictures == "[]"{
+                self._pictures = []
+            }else{
+                let picArray = pictures.components(separatedBy: ", ")
+                self._pictures = picArray
+            }
         } else {
-            self._pictures = ""
+            self._pictures = []
         }
         
         
@@ -194,7 +199,7 @@
         self._event_id = Int(eventoCoreData.event_id)
         self._latitude = eventoCoreData.latitude
         self._longitude = eventoCoreData.longitude
-        self._pictures = eventoCoreData.pictures
+        self._pictures = eventoCoreData.pictures as! [String]!
         self._price = eventoCoreData.price
         self._promotor = eventoCoreData.promotor
         self._promotor_contact = eventoCoreData.promotor_contact
@@ -217,7 +222,7 @@
         self._longitude = ""
         self._promotor = ""
         self._promotor_contact = ""
-        self._pictures = ""
+        self._pictures = []
         self._price = ""
         self._start_date = ""
         self._end_date = ""
@@ -301,7 +306,7 @@
     }
     
     
-    var pictures: String {
+    var pictures: [String] {
         get {
             return self._pictures
         } set(pictures) {
@@ -439,10 +444,8 @@
         return json
     }
     
-    func recuperarImagemEvento(evento: Event) -> UIImage{
+    func recuperarImagemPadraoEvento(evento: Event) -> UIImage{
         
-        // Caso não haja nenhuma imagem no banco
-        if evento.pictures == "" {
             // RETORNA IMAGEM PADRÃO DA CATEGORIA
             switch evento.category_id {
             case 1:
@@ -460,8 +463,6 @@
             default:
                 return #imageLiteral(resourceName: "tudo")
             }
-        }
-        return #imageLiteral(resourceName: "tudo")
     }
     
  }

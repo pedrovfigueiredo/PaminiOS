@@ -14,7 +14,7 @@ import SystemConfiguration
 class PaminAPI {
     
     var events = [Event]()
-    let PAMINAPI : String = "http://pamin.lavid.ufpb.br:80/api/"
+    let PAMINAPI : String = "http://pamin.lavid.ufpb.br:3333/api/"
     let PAMINEVENTOS: String = "registers/"
     let PAMINLOGIN: String = "auth/sign_in"
     let PAMINLOGOUT: String = "auth/sign_out"
@@ -76,7 +76,8 @@ class PaminAPI {
         let eventJSON = eventToJSON(event: evento)
         let headers = self.getUserHeader(user: CoreDataEvents().recuperarUsuarioLogado())
         
-     
+        print("Descrição : \(eventJSON.description)")
+        
         Alamofire.request(URL, method: .post, parameters: eventJSON, encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in
                 completion(response)
@@ -139,7 +140,7 @@ class PaminAPI {
             "latitude": Double(event.latitude)!,
             "longitude": Double(event.longitude)!,
             "description": event.description,
-            "pictures": ["http://res.cloudinary.com/demo/image/upload/sample.jpg","http://res.samuel.com"],
+            "pictures": ["http://static.giantbomb.com/uploads/original/4/41333/2826590-4to3.gif"],
             "category_id": event.category_id
             ] as Parameters
         

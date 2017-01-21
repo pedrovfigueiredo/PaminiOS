@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zq9-nJ-UTg">
-                                <rect key="frame" x="16" y="28" width="30" height="30"/>
+                                <rect key="frame" x="16" y="72" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="6D5-WB-BIO"/>
                                 </constraints>
@@ -308,12 +308,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Pir-a7-Efz">
-                                                    <rect key="frame" x="8" y="8" width="360" height="269"/>
+                                                    <rect key="frame" x="8" y="8" width="360" height="270"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="64d-LC-TdK">
-                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="270"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="269"/>
                                                         </imageView>
-                                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCp-ve-NU0">
+                                                        <visualEffectView opaque="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="sCp-ve-NU0">
                                                             <rect key="frame" x="0.0" y="179" width="360" height="90"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ioy-G0-DdK">
                                                                 <rect key="frame" x="0.0" y="0.0" width="360" height="90"/>
@@ -341,13 +341,21 @@
                                                             </constraints>
                                                             <blurEffect style="dark"/>
                                                         </visualEffectView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Distância" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ts9-ll-U6s">
+                                                            <rect key="frame" x="8" y="8" width="75" height="21"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.001496839337" green="0.32770067450000001" blue="0.57268995050000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="sCp-ve-NU0" firstAttribute="leading" secondItem="64d-LC-TdK" secondAttribute="leading" id="1Xs-s6-5Da"/>
                                                         <constraint firstAttribute="trailing" secondItem="64d-LC-TdK" secondAttribute="trailing" id="6iN-ba-6oG"/>
                                                         <constraint firstItem="sCp-ve-NU0" firstAttribute="trailing" secondItem="64d-LC-TdK" secondAttribute="trailing" id="H18-jg-Jbf"/>
-                                                        <constraint firstAttribute="bottom" secondItem="sCp-ve-NU0" secondAttribute="bottom" id="JJc-yC-YPL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="sCp-ve-NU0" secondAttribute="bottom" constant="1" id="JJc-yC-YPL"/>
                                                         <constraint firstItem="64d-LC-TdK" firstAttribute="centerY" secondItem="Pir-a7-Efz" secondAttribute="centerY" id="XEn-oa-7rO"/>
                                                         <constraint firstItem="64d-LC-TdK" firstAttribute="top" secondItem="Pir-a7-Efz" secondAttribute="top" id="kNN-DX-8yW"/>
                                                         <constraint firstItem="64d-LC-TdK" firstAttribute="leading" secondItem="Pir-a7-Efz" secondAttribute="leading" id="zcF-Be-Sqz"/>
@@ -356,9 +364,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="Pir-a7-Efz" secondAttribute="bottom" constant="8" id="61t-Mn-TTp"/>
+                                                <constraint firstAttribute="bottom" secondItem="Pir-a7-Efz" secondAttribute="bottom" constant="7" id="61t-Mn-TTp"/>
                                                 <constraint firstItem="Pir-a7-Efz" firstAttribute="top" secondItem="i9p-94-LZC" secondAttribute="top" constant="8" id="HMk-FZ-2ox"/>
-                                                <constraint firstItem="Pir-a7-Efz" firstAttribute="bottom" secondItem="i9p-94-LZC" secondAttribute="bottomMargin" id="kVf-H2-OGD"/>
+                                                <constraint firstItem="Pir-a7-Efz" firstAttribute="bottom" secondItem="i9p-94-LZC" secondAttribute="bottomMargin" constant="1" id="kVf-H2-OGD"/>
                                                 <constraint firstItem="Pir-a7-Efz" firstAttribute="centerX" secondItem="i9p-94-LZC" secondAttribute="centerX" id="lDy-tL-vKh"/>
                                                 <constraint firstItem="Pir-a7-Efz" firstAttribute="top" secondItem="i9p-94-LZC" secondAttribute="topMargin" id="uqK-8X-ECq"/>
                                                 <constraint firstItem="Pir-a7-Efz" firstAttribute="leading" secondItem="i9p-94-LZC" secondAttribute="leading" constant="8" id="wfM-To-V9f"/>
@@ -367,6 +375,7 @@
                                         <color key="backgroundColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="cellBG" destination="Pir-a7-Efz" id="uHx-lg-s58"/>
+                                            <outlet property="distanciaLabel" destination="ts9-ll-U6s" id="BTY-d3-bJ8"/>
                                             <outlet property="imagemEventoCelula" destination="64d-LC-TdK" id="69v-Yq-DZM"/>
                                             <outlet property="labelEndereco" destination="Nxr-Zr-9jn" id="7n0-56-ytD"/>
                                             <outlet property="labelTitulo" destination="8jv-7P-4m6" id="2GS-M7-lqD"/>
@@ -1015,9 +1024,9 @@
         <image name="user" width="45" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vdg-oW-i7S"/>
         <segue reference="SkA-cF-joP"/>
         <segue reference="cgT-o5-gHM"/>
         <segue reference="73b-SB-06s"/>
-        <segue reference="blq-HV-AcR"/>
     </inferredMetricsTieBreakers>
 </document>

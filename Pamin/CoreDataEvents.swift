@@ -99,7 +99,7 @@ class CoreDataEvents {
         eventoCoreData.event_id = Int16(evento.event_id)
         eventoCoreData.latitude = evento.latitude
         eventoCoreData.longitude = evento.longitude
-        eventoCoreData.pictures = evento.pictures
+        eventoCoreData.pictures = evento.pictures as NSObject
         eventoCoreData.price = evento.price
         eventoCoreData.promotor = evento.promotor
         eventoCoreData.promotor_contact = evento.promotor_contact

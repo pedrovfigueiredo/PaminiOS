@@ -14,7 +14,7 @@ class CelulaEvento: UITableViewCell {
     @IBOutlet weak var labelEndereco: UILabel!
     @IBOutlet weak var cellBG: UIView!
     @IBOutlet weak var imagemEventoCelula: UIImageView!
-    
+    @IBOutlet weak var distanciaLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

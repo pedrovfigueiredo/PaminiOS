@@ -8,8 +8,10 @@
 
 import UIKit
 import CoreData
+import AlamofireImage
+import CoreLocation
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var eventosTableView: UITableView!
@@ -19,11 +21,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var events : [Event] = []
     let api = PaminAPI()
     let coreDataEvents = CoreDataEvents()
+    var gerenciadorLocalizacao = CLLocationManager()
+    var userlocation = CLLocation()
     var filtro: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.configurarGerenciadorLocalizacao()
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
@@ -61,8 +66,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.atualizarDados()
         }else{
             self.events = events
+            self.ordenarTableView()
             self.eventosTableView.reloadData()
         }
+    
         
         //GAMBIARRA PARA SLIDE MENU FUNCIONAR
         UserDefaults.standard.set(0, forKey: "telaOrigem")
@@ -102,6 +109,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         api.popularArrayDeEvents { (events) in
             self.coreDataEvents.salvarEventosEmBD(eventos: events)
             self.events = self.coreDataEvents.recuperarTodosEventos()
+            self.ordenarTableView()
             self.eventosTableView.reloadData()
         }
     }
@@ -134,8 +142,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let event = self.events[indexPath.row]
         cell.labelTitulo.text = event.what
         cell.labelEndereco.text = event.where_event
-        cell.imagemEventoCelula.image = event.recuperarImagemEvento(evento: event)
+        
+        if !event.pictures.isEmpty {
+            let url = URL(string: event.pictures.first!)
+            
+            cell.imagemEventoCelula.af_setImage(withURL: url!, placeholderImage: event.recuperarImagemPadraoEvento(evento: event), filter: nil, progress: nil, progressQueue: DispatchQueue.global(), imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: false, completion: nil)
+        }else{
+            cell.imagemEventoCelula.image = event.recuperarImagemPadraoEvento(evento: event)
+        }
+        
+        var distancia = self.distanciaUsuarioEvento(evento: event)
+        distancia = (distancia/1000)
+        distancia = Double(round(100*distancia)/100)
+        
+        cell.distanciaLabel.text = String(describing: distancia)
+
         return cell
+    }
+    
+    func distanciaUsuarioEvento(evento: Event) -> Double{
+        let location = CLLocation(latitude: Double(evento.latitude)!, longitude: Double(evento.longitude)!)
+        return location.distance(from: self.userlocation)
+    }
+    
+    func ordenarTableView(){
+        self.events.sort { (evento1, evento2) -> Bool in
+            return self.distanciaUsuarioEvento(evento: evento1) < self.distanciaUsuarioEvento(evento: evento2)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.userlocation = locations.last!
+    }
+    
+    
+    func configurarGerenciadorLocalizacao(){
+        gerenciadorLocalizacao.delegate = self
+        gerenciadorLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
+        gerenciadorLocalizacao.requestWhenInUseAuthorization()
+        gerenciadorLocalizacao.startUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {
