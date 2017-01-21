@@ -9,8 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class RegisterViewController: UIViewController {
-    
+class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nomeLabel: UITextField!
     @IBOutlet weak var emailLabel: UITextField!
@@ -19,10 +18,24 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var cadastrarButton: UIButton!
     @IBOutlet weak var voltarButton: UIButton!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nomeLabel = UITextField()
+        let emailLabel = UITextField()
+        let senhaLabel = UITextField()
+        let repitaSenhaLabel = UITextField()
+        
+        nomeLabel.nextTextField = emailLabel
+        emailLabel.nextTextField = senhaLabel
+        senhaLabel.nextTextField = repitaSenhaLabel
+        
+        assert(emailLabel == nomeLabel.nextTextField)
+        assert(nomeLabel == emailLabel.previousTextField)
+        assert(senhaLabel == emailLabel.nextTextField)
+        assert(emailLabel == senhaLabel.previousTextField)
+        assert(repitaSenhaLabel == senhaLabel.nextTextField)
+        assert(senhaLabel == repitaSenhaLabel.previousTextField)
         
         cadastrarButton.layer.cornerRadius = 15.0
         voltarButton.layer.cornerRadius = 15.0

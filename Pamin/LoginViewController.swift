@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UITextField_Navigation
 
 class LoginViewController: UIViewController {
     
@@ -16,6 +17,13 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let usuarioTextField = UITextField()
+        let senhaTextField = UITextField()
+        usuarioTextField.nextTextField = senhaTextField
+        
+        assert(senhaTextField == usuarioTextField.nextTextField)
+        assert(usuarioTextField == senhaTextField.previousTextField)
         
         entrarButton.layer.cornerRadius = 15.0
         
@@ -82,5 +90,20 @@ class LoginViewController: UIViewController {
         controller.addAction(action)
         
         self.present(controller, animated: true, completion: nil)
+    }
+}
+
+extension ViewController: UITextFieldNavigationDelegate { // explicitly protocol conforming declaration
+    
+    func textFieldNavigationDidTapPreviousButton(_ textField: UITextField) {
+        textField.previousTextField?.becomeFirstResponder()
+    }
+    
+    func textFieldNavigationDidTapNextButton(_ textField: UITextField) {
+        textField.nextTextField?.becomeFirstResponder()
+    }
+    
+    func textFieldNavigationDidTapDoneButton(_ textField: UITextField) {
+        textField.resignFirstResponder()
     }
 }
