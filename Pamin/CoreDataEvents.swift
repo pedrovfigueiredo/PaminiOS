@@ -55,11 +55,16 @@ class CoreDataEvents {
         }
     }
     
-    func salvarEventosEmBD(eventos: [Event]){
+    func salvarEventosEmBD(eventos: [Event], forceupdate: Bool){
         
         var indiceUltimoEvento: Int
         
-        if UserDefaults.standard.object(forKey: indexKey) != nil{
+        var maiorIndice : Int = 0
+        for evento in eventos{
+            if evento.event_id > maiorIndice{maiorIndice = evento.event_id}
+        }
+        
+        if UserDefaults.standard.object(forKey: indexKey) != nil && forceupdate == false{
             
             indiceUltimoEvento = UserDefaults.standard.object(forKey: indexKey) as! Int
             
@@ -68,7 +73,8 @@ class CoreDataEvents {
                     self.salvarEvento(evento: evento, salvarContexto: false)
                 }
             }
-            if (eventos.last?.event_id)! > indiceUltimoEvento{
+            
+            if maiorIndice > indiceUltimoEvento{
                 UserDefaults.standard.set(eventos.last?.event_id, forKey: indexKey)
             }
         }else{
@@ -76,7 +82,7 @@ class CoreDataEvents {
             for evento in eventos {
                 self.salvarEvento(evento: evento, salvarContexto: false)
             }
-            UserDefaults.standard.set(eventos.last?.event_id, forKey: indexKey)
+            UserDefaults.standard.set(maiorIndice, forKey: indexKey)
         }
         
         do{

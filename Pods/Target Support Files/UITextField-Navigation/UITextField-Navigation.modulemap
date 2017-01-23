@@ -1,6 +1,0 @@
-framework module UITextField_Navigation {
-  umbrella header "UITextField-Navigation-umbrella.h"
-
-  export *
-  module * { export * }
-}

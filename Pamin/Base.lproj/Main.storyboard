@@ -551,9 +551,6 @@
                                                 <color key="value" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="nextTextField" destination="rOj-sh-aub" id="qkJ-PO-wYY"/>
-                                        </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c4D-u5-GM6">
                                         <rect key="frame" x="0.0" y="35" width="290" height="0.5"/>
@@ -647,9 +644,6 @@
                                                 <color key="value" red="0.72156862749999995" green="0.72156862749999995" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="nextTextField" destination="k7Y-R6-2Ub" id="MRl-c3-9n2"/>
-                                        </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4b-Uk-fhx">
                                         <rect key="frame" x="0.0" y="35" width="290" height="0.5"/>
@@ -667,9 +661,6 @@
                                                 <color key="value" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="nextTextField" destination="r7a-80-djx" id="h1c-Z5-VoF"/>
-                                        </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lm-cL-4S4">
                                         <rect key="frame" x="0.0" y="90" width="290" height="0.5"/>
@@ -687,9 +678,6 @@
                                                 <color key="value" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="nextTextField" destination="2tb-Mv-vCX" id="Vur-Iy-Lax"/>
-                                        </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5kW-uQ-nMY">
                                         <rect key="frame" x="0.0" y="145" width="290" height="0.5"/>

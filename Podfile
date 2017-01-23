@@ -10,6 +10,6 @@ target 'Pamin' do
   pod 'AlamofireImage', '~> 3.1'
   pod 'SwiftyJSON'
   pod 'Eureka', '~> 2.0.0-beta.1'
-  pod 'UITextField-Navigation'
+  pod ‘IQKeyboardManagerSwift’
 
 end

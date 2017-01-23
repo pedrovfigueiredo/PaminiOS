@@ -68,8 +68,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.atualizarDados()
         }else{
             self.events = events
-            self.isUserLocationProcessed = false
-            self.gerenciadorLocalizacao.requestLocation()
+            if UserDefaults.standard.object(forKey: "ultimaLocalizacaoUsuario") != nil {
+                
+                let ultimaLocalizacaoUsuario = UserDefaults.standard.object(forKey: "ultimaLocalizacaoUsuario") as! NSArray
+                self.userlocation = CLLocation(latitude: ultimaLocalizacaoUsuario[0] as! CLLocationDegrees, longitude: ultimaLocalizacaoUsuario[1] as! CLLocationDegrees)
+                self.ordenarTableView()
+                self.isUserLocationProcessed = true
+            }else{
+                self.isUserLocationProcessed = false
+                self.gerenciadorLocalizacao.requestLocation()
+            }
+            
             self.reloadDataWithAnimation()
         }
     
@@ -110,18 +119,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func atualizarDados(){
         api.popularArrayDeEvents { (events) in
-            if !(self.containSameElements(events1: events, events2: self.events)){
-                self.coreDataEvents.salvarEventosEmBD(eventos: events)
-                self.events = self.coreDataEvents.recuperarTodosEventos()
-            }
-            
+            self.coreDataEvents.salvarEventosEmBD(eventos: events, forceupdate: false)
+            self.events = self.coreDataEvents.recuperarTodosEventos()
             self.isUserLocationProcessed = false
             self.gerenciadorLocalizacao.requestLocation()
             self.reloadDataWithAnimation()
         }
     }
     
-    func containSameElements(events1 : [Event], events2 : [Event] ) -> Bool{
+    func containSameElements(events1 : [Event], events2 : [Event]) -> Bool{
         
         if events1.count != events2.count{return false}
         
@@ -206,6 +212,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.userlocation = locations.last!
+        let locationArray : NSArray = [self.userlocation.coordinate.latitude, self.userlocation.coordinate.longitude]
+        UserDefaults.standard.set(locationArray, forKey: "ultimaLocalizacaoUsuario")
         self.ordenarTableView()
         self.isUserLocationProcessed = true
         self.reloadDataWithAnimation()
