@@ -24,6 +24,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var gerenciadorLocalizacao = CLLocationManager()
     var userlocation = CLLocation()
     var filtro: Int = 0
+    var isUserLocationProcessed : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         eventosTableView.delegate = self
         eventosTableView.dataSource = self
         
+        
         if revealViewController() != nil {
             menuButton.target = revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -50,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         
-
+        
     }
     
     
@@ -66,8 +68,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.atualizarDados()
         }else{
             self.events = events
-            self.ordenarTableView()
-            self.eventosTableView.reloadData()
+            self.isUserLocationProcessed = false
+            self.gerenciadorLocalizacao.requestLocation()
+            self.reloadDataWithAnimation()
         }
     
         
@@ -107,11 +110,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func atualizarDados(){
         api.popularArrayDeEvents { (events) in
-            self.coreDataEvents.salvarEventosEmBD(eventos: events)
-            self.events = self.coreDataEvents.recuperarTodosEventos()
-            self.ordenarTableView()
-            self.eventosTableView.reloadData()
+            if !(self.containSameElements(events1: events, events2: self.events)){
+                self.coreDataEvents.salvarEventosEmBD(eventos: events)
+                self.events = self.coreDataEvents.recuperarTodosEventos()
+            }
+            
+            self.isUserLocationProcessed = false
+            self.gerenciadorLocalizacao.requestLocation()
+            self.reloadDataWithAnimation()
         }
+    }
+    
+    func containSameElements(events1 : [Event], events2 : [Event] ) -> Bool{
+        
+        if events1.count != events2.count{return false}
+        
+        var index : Int = 0
+        for event1 in events1{
+            if event1.description != events2[index].description{
+                return false
+            }
+            index = index + 1
+        }
+        
+        return true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,7 +177,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         distancia = (distancia/1000)
         distancia = Double(round(100*distancia)/100)
         
-        cell.distanciaLabel.text = String(describing: distancia)
+        cell.viewDistancia.layer.cornerRadius = 15.0
+        cell.viewDistancia.layer.masksToBounds = true
+        
+        cell.distanciaLabel.text = ("\(String(describing: distancia)) km")
+        if isUserLocationProcessed == true {
+            cell.distanciaLabel.isHidden = false
+            cell.spinnerDistancia.stopAnimating()
+        }else{
+            cell.spinnerDistancia.startAnimating()
+            cell.distanciaLabel.isHidden = true
+        }
+        
 
         return cell
     }
@@ -173,6 +206,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.userlocation = locations.last!
+        self.ordenarTableView()
+        self.isUserLocationProcessed = true
+        self.reloadDataWithAnimation()
     }
     
     
@@ -180,8 +216,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         gerenciadorLocalizacao.delegate = self
         gerenciadorLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
         gerenciadorLocalizacao.requestWhenInUseAuthorization()
-        gerenciadorLocalizacao.startUpdatingLocation()
     }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Erro: \(error)")
+    }
+    
+    func reloadDataWithAnimation(){
+        let range = NSMakeRange(0, self.eventosTableView.numberOfSections)
+        let sections = NSIndexSet(indexesIn: range)
+        self.eventosTableView.reloadSections(sections as IndexSet, with: .automatic)
+    }
+    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
