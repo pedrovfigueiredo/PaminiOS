@@ -119,7 +119,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func atualizarDados(){
         api.popularArrayDeEvents { (events) in
-            self.coreDataEvents.salvarEventosEmBD(eventos: events, forceupdate: false)
+            self.coreDataEvents.salvarEventosEmBD(eventos: events)
             self.events = self.coreDataEvents.recuperarTodosEventos()
             self.isUserLocationProcessed = false
             self.gerenciadorLocalizacao.requestLocation()
