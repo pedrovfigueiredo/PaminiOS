@@ -140,7 +140,7 @@ class PaminAPI {
             "latitude": Double(event.latitude)!,
             "longitude": Double(event.longitude)!,
             "description": event.description,
-            "pictures": ["http://static.giantbomb.com/uploads/original/4/41333/2826590-4to3.gif"],
+            "pictures": [""],
             "category_id": event.category_id
             ] as Parameters
         
