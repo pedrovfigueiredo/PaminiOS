@@ -10,12 +10,14 @@ import UIKit
 import Eureka
 import CoreLocation
 import SwiftOverlays
+import Cloudinary
 
 
 class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
     
     var gerenciadorLocalizacao = CLLocationManager()
     let event = Event()
+    var imagemEvento : UIImage?
     
     
     override func viewDidLoad() {
@@ -51,27 +53,30 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
         if !(PaminAPI().isInternetAvailable()){
             SwiftOverlays.removeAllBlockingOverlays()
             self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
-        }
-        
-        self.formToEvent { () in
+        }else{
             
-            
-            PaminAPI().cadastrarNovoEvento(evento: self.event) { (response) in
-                switch (response.result) {
+            self.formToEvent { () in
+                
+                self.uploadImage(completion: { ()
                     
-                case .success(_):
-                    SwiftOverlays.removeAllBlockingOverlays()
-                    self.performSegue(withIdentifier: "voltarTelaEventos", sender: nil)
-                case .failure(let error):
-                    SwiftOverlays.removeAllBlockingOverlays()
-                    let controller = UIAlertController(title: "Erro", message: "Erro ao adicionar evento ao servidor. Por favor, tente novamente mais tarde. Código do erro: \(error)", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
-                    
-                    controller.addAction(action)
-                    
-                    self.present(controller, animated: true, completion: nil)
-                    
-                }
+                    PaminAPI().cadastrarNovoEvento(evento: self.event) { (response) in
+                        switch (response.result) {
+                            
+                        case .success(_):
+                            SwiftOverlays.removeAllBlockingOverlays()
+                            self.performSegue(withIdentifier: "voltarTelaEventos", sender: nil)
+                        case .failure(let error):
+                            SwiftOverlays.removeAllBlockingOverlays()
+                            let controller = UIAlertController(title: "Erro", message: "Erro ao adicionar evento ao servidor. Por favor, tente novamente mais tarde. Código do erro: \(error)", preferredStyle: .alert)
+                            let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
+                            
+                            controller.addAction(action)
+                            
+                            self.present(controller, animated: true, completion: nil)
+                            
+                        }
+                    }
+                })
             }
         }
     }
@@ -82,11 +87,17 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
         }
     }
     
-    // FALTA COLOCAR IMAGEM NO EVENTO
+    // Imagem e Endereço são colocados por outras funções assíncronamente
     
     private func formToEvent(completion: @escaping ()->()){
         
         let valuesDictionary = self.form.values()
+        
+        if valuesDictionary["Imagem"] != nil {
+            self.imagemEvento = valuesDictionary["Imagem"] as? UIImage
+        }
+        
+        print(valuesDictionary)
         
         self.event.what = valuesDictionary["Título"] as! String? ?? ""
         if valuesDictionary["categoria"] as! String? == "Selecionar"{
@@ -112,11 +123,9 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             self.event.end_date = ""
             
         }else{
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm - dd/MM/yyyy"
             
-            self.event.start_date = dateFormatter.string(from: (form.rowBy(tag: "Começa em") as! DateTimeInlineRow).value!)
-            self.event.end_date = dateFormatter.string(from: (form.rowBy(tag: "Termina em") as! DateTimeInlineRow).value!)
+            self.event.start_date = String(describing: (form.rowBy(tag: "Começa em") as! DateTimeInlineRow).value!)
+            self.event.end_date = String(describing: (form.rowBy(tag: "Termina em") as! DateTimeInlineRow).value!)
         }
         
         if valuesDictionary["É pago?"] as? Bool == true{
@@ -260,7 +269,9 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             }
             
             <<< ImageRow(){
+                $0.tag = "Imagem"
                 $0.title = "Selecionar imagens"
+                
             }
             
             
@@ -556,6 +567,35 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
         controller.addAction(action)
         
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    func uploadImage(completion: @escaping () -> ()){
+        
+        if self.imagemEvento != nil{
+            let config = CLDConfiguration(cloudName: PaminAPI().Cloudinary_CLOUDNAME, apiKey: PaminAPI().Cloudinary_CLOUDNAME)
+            let cloudinary = CLDCloudinary(configuration: config)
+            
+            // Redimensionando Imagem
+            let size = CGSize(width: 360, height: 270)
+            let imageResized = self.imagemEvento?.af_imageAspectScaled(toFit: size)
+            
+            let data = UIImagePNGRepresentation(imageResized!) as Data?
+            
+            cloudinary.createUploader().upload(data: data!, uploadPreset: "presetPamin")
+                .response { (result, error) in
+                    if error == nil {
+                        // Adiciona url ao array pictures
+                        self.event.pictures.append((result?.url)!)
+                        completion()
+                    }else{
+                        print("Erro: \(error)")
+                        completion()
+                    }
+            }
+        }else{
+            completion()
+        }
+        
     }
     
 }

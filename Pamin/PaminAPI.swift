@@ -128,12 +128,13 @@ class PaminAPI {
         return headers
     }
     
-    // Quando samuel implementar os outros parâmetros, lembrar de atualizar
+    
     func eventToJSON(event: Event) -> Parameters{
         
+        var pictures = event.pictures
+        if pictures.isEmpty {pictures.append("")}
         
         let eventoJSON = [
-            //"id": event.event_id,
             "what": event.what,
             "where": event.where_event,
             "start_date": event.start_date,
@@ -144,7 +145,7 @@ class PaminAPI {
             "latitude": Double(event.latitude)!,
             "longitude": Double(event.longitude)!,
             "description": event.description,
-            "pictures": [""],
+            "pictures": pictures,
             "category_id": event.category_id
             ] as Parameters
         

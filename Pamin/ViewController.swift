@@ -194,7 +194,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.spinnerDistancia.startAnimating()
             cell.distanciaLabel.isHidden = true
         }
-        
 
         return cell
     }
