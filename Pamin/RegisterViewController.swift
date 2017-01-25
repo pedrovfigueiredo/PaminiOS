@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import SwiftOverlays
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -44,12 +45,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         
         if mensagemAlerta == ""{
             
-            EZLoadingActivity.show("Cadastrando...", disableUI: true)
+            SwiftOverlays.showBlockingWaitOverlayWithText("Cadastrando...")
             PaminAPI().userSignUp(nome: nomeLabel.text!, email: emailLabel.text!, password: senhaLabel.text!, completion: { (response) in
                 switch (response.result) {
                 case .success(let data):
                     if self.isValid(data: JSON(data)){
-                        EZLoadingActivity.hide(true, animated: true)
+                        SwiftOverlays.removeAllBlockingOverlays()
                         
                         //Ir para tela de login
                         let alertController = UIAlertController(title: "Sucesso", message: "Usuário cadastrado com sucesso.", preferredStyle: .alert)
@@ -60,13 +61,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                         self.present(alertController, animated: true, completion: nil)
                         
                     }else{
-                        EZLoadingActivity.hide(false, animated: true)
+                        SwiftOverlays.removeAllBlockingOverlays()
                         let errors = self.getErrors(data: JSON(data))
                         self.displayAlert(title: "Erro", message: String(describing: errors))
                         
                     }
                 case .failure(let error):
-                    EZLoadingActivity.hide()
+                    SwiftOverlays.removeAllBlockingOverlays()
                     self.displayAlert(title: "Erro", message: "Erro ao registrar usuário. Por favor, tente novamente mais tarde. Código do erro: \(error)")
                 
                 }

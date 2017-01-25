@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftOverlays
 
 class LoginViewController: UIViewController {
     
@@ -51,24 +52,24 @@ class LoginViewController: UIViewController {
 
     @IBAction func loginUser(_ sender: Any) {
         
-        EZLoadingActivity.show("Entrando...", disableUI: true)
+        SwiftOverlays.showBlockingWaitOverlayWithText("Entrando...")
         
         let api = PaminAPI()
         if !(api.isInternetAvailable()){
-            EZLoadingActivity.hide()
+            SwiftOverlays.removeAllBlockingOverlays()
             self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
         }
         
         api.userLogin(email: self.usuarioTextField.text!, password: self.senhaTextField.text!) { (user) in
             if user.user_token == "" { //Failure
-                EZLoadingActivity.hide()
+                SwiftOverlays.removeAllBlockingOverlays()
                 self.displayAlert(title: "Erro de Autenticação", message: "Usuário e/ou senha incorretos. Tente novamente.")
                 
             }else{ // Success
                 
                 // GUARDA INFO DO USUARIO LOGADO
                 CoreDataEvents().salvarUsuarioEmBD(usuario: user)
-                EZLoadingActivity.hide(true, animated: true)
+                SwiftOverlays.removeAllBlockingOverlays()
                 // VAI PARA PRÓXIMA TELA
                 self.performSegue(withIdentifier: "pastLogin", sender: nil)
                 

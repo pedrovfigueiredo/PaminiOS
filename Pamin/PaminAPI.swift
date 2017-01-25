@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import SystemConfiguration
+import Cloudinary
 
 class PaminAPI {
     
@@ -19,6 +20,9 @@ class PaminAPI {
     let PAMINLOGIN: String = "auth/sign_in"
     let PAMINLOGOUT: String = "auth/sign_out"
     let PAMINSIGNUP: String = "users"
+    
+    let Cloudinary_CLOUDNAME : String = "dn1glubhp"
+    let Cloudinary_APIKEY : String = "718496462185294"
     
     
     func popularArrayDeEvents(completion: @escaping ([Event])->()) {

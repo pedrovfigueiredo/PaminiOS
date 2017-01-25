@@ -9,6 +9,7 @@
 import UIKit
 import Eureka
 import CoreLocation
+import SwiftOverlays
 
 
 class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
@@ -45,10 +46,10 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
     
     func adicionarEvento(){
         
-        EZLoadingActivity.show("Adicionando...", disableUI: true)
+        SwiftOverlays.showBlockingWaitOverlayWithText("Adicionando...")
         
         if !(PaminAPI().isInternetAvailable()){
-            EZLoadingActivity.hide()
+            SwiftOverlays.removeAllBlockingOverlays()
             self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
         }
         
@@ -59,10 +60,10 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
                 switch (response.result) {
                     
                 case .success(_):
-                    EZLoadingActivity.hide(true, animated: true)
+                    SwiftOverlays.removeAllBlockingOverlays()
                     self.performSegue(withIdentifier: "voltarTelaEventos", sender: nil)
                 case .failure(let error):
-                    EZLoadingActivity.hide()
+                    SwiftOverlays.removeAllBlockingOverlays()
                     let controller = UIAlertController(title: "Erro", message: "Erro ao adicionar evento ao servidor. Por favor, tente novamente mais tarde. Código do erro: \(error)", preferredStyle: .alert)
                     let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
                     

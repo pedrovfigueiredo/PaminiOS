@@ -24,7 +24,6 @@
 		2A7AC0151E006D8900E87767 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */; };
 		2A7EEDDD1E09E172002FB96A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7EEDDC1E09E172002FB96A /* User.swift */; };
 		2A8274E71E008E7500E5A2B2 /* PaminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */; };
-		2A9601CB1E291FCE00247016 /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9601CA1E291FCE00247016 /* EZLoadingActivity.swift */; };
 		2AA45E191E0089A800D5C790 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45E181E0089A800D5C790 /* Event.swift */; };
 		2ABE40BF1E0435E900123F1D /* CoreDataEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */; };
 		2B8D6FE3D7953733E63A2EDC /* Pods_Pamin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB13ACE22C1CFEBFF2D2B1E /* Pods_Pamin.framework */; };
@@ -58,7 +57,6 @@
 		2A7AC0161E006D8900E87767 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A7EEDDC1E09E172002FB96A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2A8274E61E008E7500E5A2B2 /* PaminAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaminAPI.swift; sourceTree = "<group>"; };
-		2A9601CA1E291FCE00247016 /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
 		2AA45E181E0089A800D5C790 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2ABE40BE1E0435E900123F1D /* CoreDataEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataEvents.swift; sourceTree = "<group>"; };
 		6F2C1E735552303C4977FE3C /* Pods-Pamin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pamin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pamin/Pods-Pamin.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,20 +127,11 @@
 				2A7AC0131E006D8900E87767 /* LaunchScreen.storyboard */,
 				2A7AC0161E006D8900E87767 /* Info.plist */,
 				FFF009161E081AB300AC8A35 /* Pamin-Bridging-Header.h */,
-				2A9601CC1E291FE100247016 /* EZLoadingActivity */,
 				FF4D35511E25554F0014FD6D /* Eureka Helper */,
 				FF7878E31E0804B80080C202 /* SWRevealViewController */,
 				2A054F981E0873D100F6CBBB /* PaminStrings.strings */,
 			);
 			path = Pamin;
-			sourceTree = "<group>";
-		};
-		2A9601CC1E291FE100247016 /* EZLoadingActivity */ = {
-			isa = PBXGroup;
-			children = (
-				2A9601CA1E291FCE00247016 /* EZLoadingActivity.swift */,
-			);
-			name = EZLoadingActivity;
 			sourceTree = "<group>";
 		};
 		9CC1D0B59DED64ADC7B0DB2E /* Pods */ = {
@@ -325,7 +314,6 @@
 				2A7EEDDD1E09E172002FB96A /* User.swift in Sources */,
 				2A054F9B1E08999800F6CBBB /* CustomTabController.swift in Sources */,
 				2ABE40BF1E0435E900123F1D /* CoreDataEvents.swift in Sources */,
-				2A9601CB1E291FCE00247016 /* EZLoadingActivity.swift in Sources */,
 				2A266DD81E03101D0043DDAC /* DetalhesEventoViewController.swift in Sources */,
 				2A7AC00B1E006D8900E87767 /* AppDelegate.swift in Sources */,
 				FF4D35531E2555880014FD6D /* FloatLabelTextField.swift in Sources */,

@@ -11,5 +11,24 @@ target 'Pamin' do
   pod 'SwiftyJSON'
   pod 'Eureka', '~> 2.0.0-beta.1'
   pod ‘IQKeyboardManagerSwift’
+  pod 'Cloudinary', '~> 2.0'
+  pod 'SwiftOverlays', '~> 3.0.0'
 
+end
+
+#Para o Cloudinary funcionar:
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      # remove this when https://github.com/cloudinary/cloudinary_ios/issues/57 is resolved
+      if target.name == 'Cloudinary'
+        config.build_settings['FRAMEWORK_SEARCH_PATHS'] = [
+          '$(inherited)',
+          './Cloudinary/Cloudinary/Frameworks/CLDCrypto/$(PLATFORM_NAME)',
+          '$PODS_CONFIGURATION_BUILD_DIR/Alamofire'
+        ]
+      end
+    end
+  end
 end
