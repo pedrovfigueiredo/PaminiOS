@@ -183,9 +183,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         distancia = (distancia/1000)
         distancia = Double(round(100*distancia)/100)
         
-        cell.viewDistancia.layer.cornerRadius = 15.0
+        cell.viewDistancia.layer.cornerRadius = 6.0
         cell.viewDistancia.layer.masksToBounds = true
-        
+        cell.cellBG.layer.cornerRadius = 8.0
+        cell.imagemEventoCelula.layer.cornerRadius = 8.0
+        cell.viewTitulo.layer.cornerRadius = 8.0
+        cell.viewTitulo.layer.masksToBounds = true
+    
         cell.distanciaLabel.text = ("\(String(describing: distancia)) km")
         if isUserLocationProcessed == true {
             cell.distanciaLabel.isHidden = false
