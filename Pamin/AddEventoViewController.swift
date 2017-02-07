@@ -397,7 +397,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             <<< DecimalRow("Valor"){
                 $0.hidden = .function(["É pago?"], { form -> Bool in
                     let row: RowOf<Bool>! = form.rowBy(tag: "É pago?")
-                    return row.value ?? false == false
+                    return row.value ?? false == falseq
                 })
                 $0.useFormatterDuringInput = true
                 $0.title = $0.tag
