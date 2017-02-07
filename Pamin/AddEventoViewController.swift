@@ -64,7 +64,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
                             
                         case .success(_):
                             SwiftOverlays.removeAllBlockingOverlays()
-                            self.performSegue(withIdentifier: "voltarTelaEventos", sender: nil)
+                            self.performSegue(withIdentifier: "adicionarCompleto", sender: nil)
                         case .failure(let error):
                             SwiftOverlays.removeAllBlockingOverlays()
                             let controller = UIAlertController(title: "Erro", message: "Erro ao adicionar evento ao servidor. Por favor, tente novamente mais tarde. Código do erro: \(error)", preferredStyle: .alert)
@@ -82,8 +82,10 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "voltarTelaEventos"{
-            UserDefaults.standard.set(0, forKey: "telaOrigem")
+        if segue.identifier == "adicionarCompleto"{
+            PaminAPI().popularArrayDeEvents(completion: { (events) in
+                CoreDataEvents().salvarEventosEmBD(eventos: events)
+            })
         }
     }
     
@@ -397,7 +399,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             <<< DecimalRow("Valor"){
                 $0.hidden = .function(["É pago?"], { form -> Bool in
                     let row: RowOf<Bool>! = form.rowBy(tag: "É pago?")
-                    return row.value ?? false == falseq
+                    return row.value ?? false == false
                 })
                 $0.useFormatterDuringInput = true
                 $0.title = $0.tag

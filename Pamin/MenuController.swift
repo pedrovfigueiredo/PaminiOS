@@ -56,13 +56,6 @@ class MenuController: UITableViewController {
         self.revealViewController().frontViewController.view.isUserInteractionEnabled = true
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        if UserDefaults.standard.object(forKey: "telaOrigem") != nil {
-            self.telaOrigem = UserDefaults.standard.object(forKey: "telaOrigem") as! Int
-        }
-    }
-    
     func arrendondarImagens(){
         imagemTudo.layer.cornerRadius = imagemTudo.frame.size.width / 2;
         imagemTudo.clipsToBounds = true
@@ -110,18 +103,8 @@ class MenuController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "voltarTabController"{
-            switch self.telaOrigem {
-            case 0:
-                let destino = segue.destination as! CustomTabController
-                destino.indiceTela = 0
-                destino.filtro = self.filtro
-            case 1:
-                let destino = segue.destination as! CustomTabController
-                destino.indiceTela = 1
-                destino.filtro = self.filtro
-            default:
-                print("Algo deu errado")
-            }
+            let destino = segue.destination as! CustomTabController
+            destino.filtro = self.filtro
         }
 
     }

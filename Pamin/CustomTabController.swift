@@ -11,10 +11,12 @@ import UIKit
 
 class CustomTabController: UITabBarController {
     
-    var indiceTela: Int = 0
     var filtro: Int = 0
     
     override func viewDidLoad() {
-        self.selectedIndex = indiceTela
+        
+        if UserDefaults.standard.object(forKey: "telaOrigem") != nil {
+            self.selectedIndex = UserDefaults.standard.object(forKey: "telaOrigem") as! Int
+        }
     }
 }
