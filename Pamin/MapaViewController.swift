@@ -137,7 +137,6 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         
         // Esconde botão de centralizar usuário quando o mapa já está centralizado
-        
         let centroMapa = CLLocation(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude)
         let localizacaoUsuario = gerenciadorLocalizacao.location ?? CLLocation()
         let distancia = localizacaoUsuario.distance(from: centroMapa) as Double
