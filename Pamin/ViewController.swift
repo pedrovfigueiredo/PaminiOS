@@ -175,6 +175,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let url = URL(string: event.pictures.first!)
             
             cell.imagemEventoCelula.af_setImage(withURL: url!, placeholderImage: event.recuperarImagemPadraoEvento(evento: event), filter: nil, progress: nil, progressQueue: DispatchQueue.global(), imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: false, completion: nil)
+            
         }else{
             cell.imagemEventoCelula.image = event.recuperarImagemPadraoEvento(evento: event)
         }

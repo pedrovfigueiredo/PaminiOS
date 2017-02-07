@@ -60,10 +60,15 @@ class LoginViewController: UIViewController {
             self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
         }
         
-        api.userLogin(email: self.usuarioTextField.text!, password: self.senhaTextField.text!) { (user) in
+        api.userLogin(email: self.usuarioTextField.text!, password: self.senhaTextField.text!) { (user, response) in
             if user.user_token == "" { //Failure
                 SwiftOverlays.removeAllBlockingOverlays()
-                self.displayAlert(title: "Erro de Autenticação", message: "Usuário e/ou senha incorretos. Tente novamente.")
+                
+                if response.response?.statusCode == nil {
+                    self.displayAlert(title: "Servidor Indisponível", message: "Servidor está inacessível no momento. Tente novamente mais tarde.")
+                }else{
+                    self.displayAlert(title: "Erro de Autenticação", message: "Usuário e/ou senha incorretos. Tente novamente.")
+                }
                 
             }else{ // Success
                 

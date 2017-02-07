@@ -101,7 +101,7 @@ class PaminAPI {
     }
     
     
-    func userLogin(email:String, password: String, completion: @escaping (User)->()){
+    func userLogin(email:String, password: String, completion: @escaping (User, DataResponse<Any>)->()){
         
         let userJSON = userLogInToJSON(email: email, password: password)
         let URL = PAMINAPI + PAMINLOGIN
@@ -115,7 +115,7 @@ class PaminAPI {
                 case .failure(let error):
                     print("Request failed with error: \(error)")
                 }
-                completion(user)
+                completion(user, response)
             })
     }
     
