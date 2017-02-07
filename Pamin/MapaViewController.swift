@@ -21,6 +21,9 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     
     @IBOutlet weak var mapa: MKMapView!
     
+    @IBOutlet weak var centralizarUsuarioButton: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -129,6 +132,20 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let regiao = mapa.region
         let arrayInfoRegiao : NSArray = [regiao.center.latitude, regiao.center.longitude, regiao.span.latitudeDelta, regiao.span.longitudeDelta]
         UserDefaults.standard.set(arrayInfoRegiao, forKey: "regiaoAtualMapa")
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        // Esconde botão de centralizar usuário quando o mapa já está centralizado
+        
+        let centroMapa = CLLocation(latitude: mapView.region.center.latitude, longitude: mapView.region.center.longitude)
+        let localizacaoUsuario = gerenciadorLocalizacao.location ?? CLLocation()
+        let distancia = localizacaoUsuario.distance(from: centroMapa) as Double
+        if  distancia < 10 {
+            self.centralizarUsuarioButton.isHidden = true
+        }else{
+            self.centralizarUsuarioButton.isHidden = false
+        }
     }
     
     

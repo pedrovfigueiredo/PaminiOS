@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zq9-nJ-UTg">
-                                <rect key="frame" x="16" y="72" width="30" height="30"/>
+                                <rect key="frame" x="16" y="28" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="6D5-WB-BIO"/>
                                 </constraints>
@@ -61,6 +61,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="centralizarUsuarioButton" destination="zq9-nJ-UTg" id="kQn-ZS-9SR"/>
                         <outlet property="mapa" destination="88Y-B5-udw" id="xpp-8B-zLs"/>
                         <outlet property="menuMapButton" destination="qs3-Jp-SLj" id="Jis-HE-MaA"/>
                         <segue destination="N6p-V8-0s0" kind="show" identifier="detalhesEventoSegue" id="blq-HV-AcR"/>
