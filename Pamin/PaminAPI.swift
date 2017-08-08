@@ -15,7 +15,7 @@ import Cloudinary
 class PaminAPI {
     
     var events = [Event]()
-    let PAMINAPI : String = "http://pamin.lavid.ufpb.br:80/api/"
+    let PAMINAPI : String = "http://pamin.lavid.ufpb.br:3333/api/"
     let PAMINEVENTOS: String = "registers/"
     let PAMINLOGIN: String = "auth/sign_in"
     let PAMINLOGOUT: String = "auth/sign_out"
