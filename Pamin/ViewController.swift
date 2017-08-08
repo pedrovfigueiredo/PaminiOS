@@ -91,12 +91,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.filtro == 0 {
-            return 300
+            return 200
         }else if events[indexPath.row].category_id != self.filtro{
             return 0
         }
     
-        return 300
+        return 200
     }
     
     // ATUALIZAR DADOS COM BANCO ONLINE (GESTO DE ARRASTAR TABLEVIEW PARA BAIXO)
@@ -184,12 +184,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         distancia = (distancia/1000)
         distancia = Double(round(100*distancia)/100)
         
-        cell.viewDistancia.layer.cornerRadius = 6.0
-        cell.viewDistancia.layer.masksToBounds = true
         cell.cellBG.layer.cornerRadius = 8.0
         cell.imagemEventoCelula.layer.cornerRadius = 8.0
-        cell.viewTitulo.layer.cornerRadius = 8.0
-        cell.viewTitulo.layer.masksToBounds = true
     
         cell.distanciaLabel.text = ("\(String(describing: distancia)) km")
         if isUserLocationProcessed == true {
