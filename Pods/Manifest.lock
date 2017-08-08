@@ -1,32 +1,32 @@
 PODS:
-  - Alamofire (4.0.1)
-  - AlamofireImage (3.1.0):
-    - Alamofire (~> 4.0)
-  - Cloudinary (2.0.0):
-    - Alamofire (~> 4.0.1)
-  - Eureka (2.0.0-beta.1)
-  - IQKeyboardManagerSwift (4.0.8)
+  - Alamofire (4.5.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
+  - Cloudinary (2.0.2):
+    - Alamofire (~> 4.1)
+  - Eureka (2.0.1)
+  - IQKeyboardManagerSwift (4.0.11)
   - SwiftOverlays (3.0.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.0.1)
-  - AlamofireImage (~> 3.1)
-  - Cloudinary (~> 2.0)
+  - Alamofire
+  - AlamofireImage
+  - Cloudinary
   - Eureka (~> 2.0.0-beta.1)
   - IQKeyboardManagerSwift
-  - SwiftOverlays (~> 3.0.0)
+  - SwiftOverlays
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  AlamofireImage: bb8c8351c51cb1633bb6be69b6dbbaff37ce65b7
-  Cloudinary: c1c7ae3f9559784b31796e3e641cfb8d62b8288d
-  Eureka: d014adf16406745e1a78d5790ea37ed130a0a8e5
-  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Cloudinary: 2d7c889fc4329ebc59c7967ec277df882b2602d5
+  Eureka: ae837bb1dfae0c07bc1bda7aeef87876eeb537c2
+  IQKeyboardManagerSwift: 10f0a6b8ea2904c8943c0e1a116c99f5b8ad83af
   SwiftOverlays: 4cdd9e4f5c7817fb6348882059eb697e11685fad
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 7ad7629e9c8c8e21279f3cd01b8ad67f6610874e
+PODFILE CHECKSUM: aead0755863c10907c4cbb52e7e9ea7f8a28f841
 
 COCOAPODS: 1.1.1

@@ -30,9 +30,9 @@ private var kIQToolbarTitleInvocationSelector   = "kIQToolbarTitleInvocationSele
 /** @abstract   IQToolbar for IQKeyboardManager.    */
 open class IQToolbar: UIToolbar , UIInputViewAudioFeedback {
 
-    override open class func initialize() {
-        
-        superclass()?.initialize()
+    private static var _classInitialize: Void = classInitialize()
+    
+    private class func classInitialize() {
                 
         self.appearance().barTintColor = nil
         
@@ -132,6 +132,7 @@ open class IQToolbar: UIToolbar , UIInputViewAudioFeedback {
     }
     
     override init(frame: CGRect) {
+        _ = IQToolbar._classInitialize
         super.init(frame: frame)
         
         sizeToFit()
@@ -141,6 +142,7 @@ open class IQToolbar: UIToolbar , UIInputViewAudioFeedback {
     }
     
     required public init?(coder aDecoder: NSCoder) {
+        _ = IQToolbar._classInitialize
         super.init(coder: aDecoder)
 
         sizeToFit()
@@ -191,13 +193,6 @@ open class IQToolbar: UIToolbar , UIInputViewAudioFeedback {
 
         super.layoutSubviews()
         
-        struct InternalClass {
-            
-            static var IQUIToolbarTextButtonClass: UIControl.Type?  =   NSClassFromString("UIToolbarTextButton") as? UIControl.Type
-            static var IQUIToolbarButtonClass: UIControl.Type?      =   NSClassFromString("UIToolbarButton") as? UIControl.Type
-        }
-
-
         var leftRect = CGRect.null
         var rightRect = CGRect.null
         var isTitleBarButtonFound = false
@@ -218,17 +213,13 @@ open class IQToolbar: UIToolbar , UIInputViewAudioFeedback {
         
         for barButtonItemView in sortedSubviews {
 
-            if (isTitleBarButtonFound == true)
-            {
+            if isTitleBarButtonFound == true {
                 rightRect = barButtonItemView.frame
                 break
-            }
-            else if (type(of: barButtonItemView) === UIView.self)
-            {
+            } else if type(of: barButtonItemView) === UIView.self {
                 isTitleBarButtonFound = true
-            }
-            else if ((InternalClass.IQUIToolbarTextButtonClass != nil && barButtonItemView.isKind(of: InternalClass.IQUIToolbarTextButtonClass!) == true) || (InternalClass.IQUIToolbarButtonClass != nil && barButtonItemView.isKind(of: InternalClass.IQUIToolbarButtonClass!) == true))
-            {
+                //If it's UIToolbarButton or UIToolbarTextButton (which actually UIBarButtonItem)
+            } else if barButtonItemView.isKind(of: UIControl.self) == true {
                 leftRect = barButtonItemView.frame
             }
         }
