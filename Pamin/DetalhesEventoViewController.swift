@@ -70,19 +70,19 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
             dateFormatterFromEvent.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"
             
             let dateFormatterToLabel = DateFormatter()
-            dateFormatterToLabel.dateFormat = "dd/MM/yyyy, HH:mm"
+            dateFormatterToLabel.dateFormat = "HH:mm dd/MM/yyyy"
             
             if evento.start_date != ""{
                 let start_date = dateFormatterFromEvent.date(from: evento.start_date)!
                 
-                dateLabel.text? = "Começa em "
+                dateLabel.text? = "Começa às "
                 dateLabel.text?.append(dateFormatterToLabel.string(from: start_date))
             }
             
             if evento.end_date != ""{
                 let end_date = dateFormatterFromEvent.date(from: evento.end_date)!
                 
-                dateLabel.text?.append("\nTermina em ")
+                dateLabel.text?.append(" e\ntermina às ")
                 dateLabel.text?.append(dateFormatterToLabel.string(from: end_date))
             }
         }
@@ -197,29 +197,6 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-     func getColorEvento()  -> UIColor {
-     
-     switch self.evento.category_id {
-     case 7:
-     return UIColor(red: 47/255, green: 55/255, blue: 136/255, alpha: 1)
-     case 8:
-     return UIColor(red: 50/255, green: 171/255, blue: 223/255, alpha: 1)
-     case 9:
-     return UIColor(red: 188/255, green: 33/255, blue: 50/255, alpha: 1)
-     case 10:
-     return UIColor(red: 186/255, green: 41/255, blue: 139/255, alpha: 1)
-     case 11:
-     return UIColor(red: 245/255, green: 147/255, blue: 49/255, alpha: 1)
-     case 12:
-     return UIColor(red: 104/255, green: 186/255, blue: 78/255, alpha: 1)
-     default: break
-     }
-     
-     // Se for default, todos serão brancos
-     
-     return UIColor.white
-     }*/
 
     
 }

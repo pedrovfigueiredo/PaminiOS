@@ -91,12 +91,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if self.filtro == 0 {
-            return 200
+            return 180
         }else if events[indexPath.row].category_id != self.filtro{
             return 0
         }
     
-        return 200
+        return 180
     }
     
     // ATUALIZAR DADOS COM BANCO ONLINE (GESTO DE ARRASTAR TABLEVIEW PARA BAIXO)
@@ -170,6 +170,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let event = self.events[indexPath.row]
         cell.labelTitulo.text = event.what
         cell.labelEndereco.text = event.where_event
+        cell.titleCategoria.text = event.category_name
         
         if !event.pictures.isEmpty {
             let url = URL(string: event.pictures.first!)
@@ -180,23 +181,50 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.imagemEventoCelula.image = event.recuperarImagemPadraoEvento(evento: event)
         }
         
+
         var distancia = self.distanciaUsuarioEvento(evento: event)
         distancia = (distancia/1000)
         distancia = Double(round(100*distancia)/100)
         
         cell.cellBG.layer.cornerRadius = 8.0
         cell.imagemEventoCelula.layer.cornerRadius = 8.0
+        cell.labelCategoria.backgroundColor = self.getColorEvento(evento: event)
     
         cell.distanciaLabel.text = ("\(String(describing: distancia)) km")
         if isUserLocationProcessed == true {
             cell.distanciaLabel.isHidden = false
+            cell.pinLabel.isHidden = false
             cell.spinnerDistancia.stopAnimating()
         }else{
             cell.spinnerDistancia.startAnimating()
             cell.distanciaLabel.isHidden = true
+            cell.pinLabel.isHidden = true
         }
 
         return cell
+    }
+    
+    func getColorEvento(evento: Event)  -> UIColor {
+        
+        switch evento.category_id {
+        case 1:
+            return UIColor(red: 47/255, green: 55/255, blue: 136/255, alpha: 1)
+        case 2:
+            return UIColor(red: 50/255, green: 171/255, blue: 223/255, alpha: 1)
+        case 3:
+            return UIColor(red: 188/255, green: 33/255, blue: 50/255, alpha: 1)
+        case 4:
+            return UIColor(red: 186/255, green: 41/255, blue: 139/255, alpha: 1)
+        case 5:
+            return UIColor(red: 245/255, green: 147/255, blue: 49/255, alpha: 1)
+        case 6:
+            return UIColor(red: 104/255, green: 186/255, blue: 78/255, alpha: 1)
+        default: break
+        }
+        
+        // Se for default, todos serão brancos
+        
+        return UIColor.white
     }
     
     func distanciaUsuarioEvento(evento: Event) -> Double{

@@ -15,7 +15,10 @@ class CelulaEvento: UITableViewCell {
     @IBOutlet weak var cellBG: UIView!
     @IBOutlet weak var imagemEventoCelula: UIImageView!
     @IBOutlet weak var distanciaLabel: UILabel!
+    @IBOutlet weak var pinLabel: UIImageView!
     @IBOutlet weak var spinnerDistancia: UIActivityIndicatorView!
+    @IBOutlet weak var labelCategoria: UIView!
+    @IBOutlet weak var titleCategoria: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +27,8 @@ class CelulaEvento: UITableViewCell {
         cellBG.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
         cellBG.layer.shadowOpacity = 0.8
         cellBG.layer.shadowRadius = 4.0
+        labelTitulo.sizeToFit()
+        labelEndereco.sizeToFit()
         
     }
     
