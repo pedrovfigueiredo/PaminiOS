@@ -104,15 +104,15 @@
         }
         
         
-        if let pictures = data["pictures"] as? String {
-            if pictures == "" || pictures == "{}" || pictures == "[]"{
-                self._pictures = []
-            }else{
-                let picArray = pictures.components(separatedBy: ", ")
-                self._pictures = picArray
+        if let pictures = data["pictures"] as? [String] {
+            self._pictures = [];
+            for picture in pictures{
+                if !picture.isEmpty{
+                    self._pictures.append(picture);
+                }
             }
         } else {
-            self._pictures = []
+            self._pictures = [];
         }
         
         

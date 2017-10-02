@@ -39,7 +39,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUp(_ sender: Any) {
         
         if !(PaminAPI().isInternetAvailable()){
-            self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
+            self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Conecte-se e tente novamente.")
         }
         let mensagemAlerta = checkFields()
         
@@ -127,7 +127,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }else{
             if senhaLabel.text != repitaSenhaLabel.text {
                 if mensagemAlerta != ""{mensagemAlerta.append("\n")}
-                mensagemAlerta.append("Senhas não coincidem.")
+                mensagemAlerta.append("As senhas não coincidem.")
                 senhaLabel.text = ""
                 repitaSenhaLabel.text = ""
             }

@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         application.statusBarStyle = .lightContent
         
+        UINavigationBar.appearance().setBackgroundImage(UIImage(named: "pattern")!.resizableImage(withCapInsets: UIEdgeInsetsMake(0, 0, 0, 0), resizingMode: .stretch), for: .default)
+        
         // Override point for customization after application launch.
         return true
     }

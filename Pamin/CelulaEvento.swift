@@ -23,10 +23,10 @@ class CelulaEvento: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        cellBG.layer.shadowColor = UIColor.gray.cgColor
-        cellBG.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        cellBG.layer.shadowOpacity = 0.8
-        cellBG.layer.shadowRadius = 4.0
+        cellBG.layer.shadowColor = UIColor.lightGray.cgColor
+        cellBG.layer.shadowOpacity = 1
+        cellBG.layer.shadowOffset = CGSize.zero
+        cellBG.layer.shadowRadius = 4
         labelTitulo.sizeToFit()
         labelEndereco.sizeToFit()
         

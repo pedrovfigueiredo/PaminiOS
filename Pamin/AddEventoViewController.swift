@@ -272,7 +272,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             
             <<< ImageRow(){
                 $0.tag = "Imagem"
-                $0.title = "Selecionar imagens"
+                $0.title = "Selecionar foto"
                 
             }
             
@@ -590,7 +590,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
                         self.event.pictures.append((result?.url)!)
                         completion()
                     }else{
-                        print("Erro: \(error)")
+                        print("Erro: \(String(describing: error))")
                         completion()
                     }
             }

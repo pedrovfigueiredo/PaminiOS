@@ -17,7 +17,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var eventosTableView: UITableView!
     
     
-    
     var events : [Event] = []
     let api = PaminAPI()
     let coreDataEvents = CoreDataEvents()
@@ -51,7 +50,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        
         
     }
     
@@ -172,7 +170,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.labelEndereco.text = event.where_event
         cell.titleCategoria.text = event.category_name
         
-        if !event.pictures.isEmpty {
+        if !event.pictures.isEmpty{
             let url = URL(string: event.pictures.first!)
             
             cell.imagemEventoCelula.af_setImage(withURL: url!, placeholderImage: event.recuperarImagemPadraoEvento(evento: event), filter: nil, progress: nil, progressQueue: DispatchQueue.global(), imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: false, completion: nil)
@@ -186,8 +184,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         distancia = (distancia/1000)
         distancia = Double(round(100*distancia)/100)
         
-        cell.cellBG.layer.cornerRadius = 8.0
-        cell.imagemEventoCelula.layer.cornerRadius = 8.0
+        cell.cellBG.layer.cornerRadius = 7.0
+        cell.labelCategoria.layer.cornerRadius = 5.0
+        cell.imagemEventoCelula.layer.cornerRadius = 6.0
         cell.labelCategoria.backgroundColor = self.getColorEvento(evento: event)
     
         cell.distanciaLabel.text = ("\(String(describing: distancia)) km")

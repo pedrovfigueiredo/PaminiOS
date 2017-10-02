@@ -9,7 +9,7 @@ target 'Pamin' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'SwiftyJSON'
-  pod 'Eureka', '~> 2.0.0-beta.1'
+  pod 'Eureka', :git => 'https://github.com/xmartlabs/Eureka.git', :branch => 'feature/Xcode9-Swift3_2'
   pod ‘IQKeyboardManagerSwift’
   pod 'Cloudinary'
   pod 'SwiftOverlays'

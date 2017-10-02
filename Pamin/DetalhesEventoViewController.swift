@@ -15,6 +15,7 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
     var gerenciadorLocalizacao = CLLocationManager()
     
     
+    @IBOutlet weak var corCategoria: UIView!
     @IBOutlet weak var whereLabel: UILabel!
     @IBOutlet weak var whatLabel: UILabel!
     @IBOutlet weak var descriptionView: UITextView!
@@ -47,6 +48,7 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
             imagemEvento.image = evento.recuperarImagemPadraoEvento(evento: evento)
         }
 
+        corCategoria.backgroundColor = self.getColorEvento(evento: evento)
         
         // Endereço
         whereLabel.text = evento.where_event
@@ -103,6 +105,30 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         }
         return super.tableView(tableView, heightForHeaderInSection: section)
     }
+    
+    func getColorEvento(evento: Event)  -> UIColor {
+        
+        switch evento.category_id {
+        case 1:
+            return UIColor(red: 47/255, green: 55/255, blue: 136/255, alpha: 1)
+        case 2:
+            return UIColor(red: 50/255, green: 171/255, blue: 223/255, alpha: 1)
+        case 3:
+            return UIColor(red: 188/255, green: 33/255, blue: 50/255, alpha: 1)
+        case 4:
+            return UIColor(red: 186/255, green: 41/255, blue: 139/255, alpha: 1)
+        case 5:
+            return UIColor(red: 245/255, green: 147/255, blue: 49/255, alpha: 1)
+        case 6:
+            return UIColor(red: 104/255, green: 186/255, blue: 78/255, alpha: 1)
+        default: break
+        }
+        
+        // Se for default, todos serão brancos
+        
+        return UIColor.white
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         // Checa-se seção por seção e, se necessário, linha por linha
