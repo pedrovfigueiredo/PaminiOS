@@ -17,8 +17,8 @@ class CelulaEvento: UITableViewCell {
     @IBOutlet weak var distanciaLabel: UILabel!
     @IBOutlet weak var pinLabel: UIImageView!
     @IBOutlet weak var spinnerDistancia: UIActivityIndicatorView!
-    @IBOutlet weak var labelCategoria: UIView!
     @IBOutlet weak var titleCategoria: UILabel!
+    @IBOutlet weak var labelCategoria: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

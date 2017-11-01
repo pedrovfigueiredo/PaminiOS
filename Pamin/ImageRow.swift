@@ -35,8 +35,7 @@ public struct ImageRowSourceTypes : OptionSet {
     
     public static let PhotoLibrary  = ImageRowSourceTypes(.photoLibrary)
     public static let Camera  = ImageRowSourceTypes(.camera)
-    public static let SavedPhotosAlbum = ImageRowSourceTypes(.savedPhotosAlbum)
-    public static let All: ImageRowSourceTypes = [Camera, PhotoLibrary, SavedPhotosAlbum]
+    public static let All: ImageRowSourceTypes = [Camera, PhotoLibrary]
     
 }
 
@@ -47,11 +46,9 @@ extension ImageRowSourceTypes {
     var localizedString: String {
         switch self {
         case ImageRowSourceTypes.Camera:
-            return "Take photo"
+            return "Tirar Foto"
         case ImageRowSourceTypes.PhotoLibrary:
-            return "Photo Library"
-        case ImageRowSourceTypes.SavedPhotosAlbum:
-            return "Saved Photos"
+            return "Rolo da Câmera"
         default:
             return ""
         }
@@ -115,9 +112,6 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let _ = availableSources.insert(.Camera)
         }
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
-            let _ = availableSources.insert(.SavedPhotosAlbum)
-        }
 
         sourceTypes.formIntersection(availableSources)
         
@@ -135,7 +129,7 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
         }
         createOptionsForAlertController(sourceActionSheet)
         if case .yes(let style) = clearAction, value != nil {
-            let clearPhotoOption = UIAlertAction(title: NSLocalizedString("Clear Photo", comment: ""), style: style, handler: { [weak self] _ in
+            let clearPhotoOption = UIAlertAction(title: NSLocalizedString("Limpar Foto", comment: ""), style: style, handler: { [weak self] _ in
                 self?.value = nil
                 self?.imageURL = nil
                 self?.updateCell()
@@ -148,7 +142,7 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
                 displayImagePickerController(imagePickerSourceType)
             }
         } else {
-            let cancelOption = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler:nil)
+            let cancelOption = UIAlertAction(title: NSLocalizedString("Cancelar", comment: ""), style: .cancel, handler:nil)
             sourceActionSheet.addAction(cancelOption)
             
             if let presentingViewController = cell.formViewController() {
@@ -168,12 +162,14 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
     open override func customUpdateCell() {
         super.customUpdateCell()
         cell.accessoryType = .none
+        cell.editingAccessoryView = .none
         if let image = self.value {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
             imageView.contentMode = .scaleAspectFill
             imageView.image = image
             imageView.clipsToBounds = true
             cell.accessoryView = imageView
+            cell.editingAccessoryView = imageView
         }
         else{
             cell.accessoryView = nil
@@ -198,7 +194,6 @@ extension _ImageRow {
     func createOptionsForAlertController(_ alertController: UIAlertController) {
         createOptionForAlertController(alertController, sourceType: .Camera)
         createOptionForAlertController(alertController, sourceType: .PhotoLibrary)
-        createOptionForAlertController(alertController, sourceType: .SavedPhotosAlbum)
     }
 }
 

@@ -46,6 +46,8 @@ class MenuController: UITableViewController {
         self.revealViewController().view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.revealViewController().frontViewController.revealViewController().tapGestureRecognizer()
         self.revealViewController().frontViewController.view.isUserInteractionEnabled = false
+        
+        //tableView.backgroundView = UIImageView(image: UIImage(named: "pattern.png"))
     }
     
     

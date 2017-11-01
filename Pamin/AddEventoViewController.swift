@@ -266,14 +266,24 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             
             
             
-            +++ Section("Imagens"){
-                $0.tag = "Imagens"
-            }
-            
-            <<< ImageRow(){
+            +++ MultivaluedSection(multivaluedOptions: [.Insert],
+               header: "Imagens") {
                 $0.tag = "Imagem"
-                $0.title = "Selecionar foto"
-                
+                $0.addButtonProvider = { section in
+                    return ButtonRow(){
+                        $0.title = "Mais imagens"
+                        }.cellUpdate { cell, row in
+                            cell.textLabel?.textAlignment = .left
+                    }
+                }
+                $0.multivaluedRowToInsertAt = { index in
+                    return ImageRow(){
+                        $0.title = "Selecionar imagem:"
+                    }
+                }
+                $0 <<< ImageRow() {
+                    $0.title = "Selecionar imagem:"
+                }
             }
             
             

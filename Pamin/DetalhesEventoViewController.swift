@@ -14,6 +14,7 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
     var evento : Event!
     var gerenciadorLocalizacao = CLLocationManager()
     
+    @IBOutlet weak var slideshow: UIView!
     
     @IBOutlet weak var corCategoria: UIView!
     @IBOutlet weak var whereLabel: UILabel!
@@ -40,6 +41,8 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         mapaDescricaoEvento.isScrollEnabled = false
         
         //Imagem
+        
+        print(evento.pictures)
         if !evento.pictures.isEmpty {
             let url = URL(string: evento.pictures.first!)
             
@@ -207,8 +210,8 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
     
      func Centralizar(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
         
-        let deltaLatitude = 0.02
-        let deltaLongitude = 0.02
+        let deltaLatitude = 0.008
+        let deltaLongitude = 0.008
         
         let localizacao = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let zoom = MKCoordinateSpan(latitudeDelta: deltaLatitude, longitudeDelta: deltaLongitude)

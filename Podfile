@@ -13,6 +13,7 @@ target 'Pamin' do
   pod ‘IQKeyboardManagerSwift’
   pod 'Cloudinary'
   pod 'SwiftOverlays'
+  pod 'ImageSlideshow', '~> 1.4'
 
 end
 

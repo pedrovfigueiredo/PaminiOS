@@ -121,7 +121,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             if UserDefaults.standard.object(forKey: "regiaoAtualMapa") == nil {
                 let localizacaoUsuario = locations.last!
                 
-                self.Centralizar(latitude: localizacaoUsuario.coordinate.latitude, longitude: localizacaoUsuario.coordinate.longitude, deltaLatitude: 0.03, deltaLongitude: 0.03, animated: true)
+                self.Centralizar(latitude: localizacaoUsuario.coordinate.latitude, longitude: localizacaoUsuario.coordinate.longitude, deltaLatitude: 0.008, deltaLongitude: 0.008, animated: true)
             }
             
             self.isFirstCall = false
@@ -154,7 +154,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         let latitude = location?.coordinate.latitude
         let longitude = location?.coordinate.longitude
         
-        self.Centralizar(latitude: latitude!, longitude: longitude!, deltaLatitude: 0.03, deltaLongitude: 0.03, animated: true)
+        self.Centralizar(latitude: latitude!, longitude: longitude!, deltaLatitude: 0.008, deltaLongitude: 0.008, animated: true)
     }
 
     
