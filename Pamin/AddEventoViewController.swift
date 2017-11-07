@@ -590,7 +590,6 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
         let dispatchGroup = DispatchGroup()
         let config = CLDConfiguration(cloudName: PaminAPI().Cloudinary_CLOUDNAME, apiKey: PaminAPI().Cloudinary_CLOUDNAME)
         let cloudinary = CLDCloudinary(configuration: config)
-        var data : Data
         
         for imagem in self.imagensEvento{
             dispatchGroup.enter()
@@ -598,7 +597,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             // Redimensionando Imagem
             let size = CGSize(width: 360, height: 270)
             let imageResized = imagem.af_imageAspectScaled(toFit: size)
-            data = UIImagePNGRepresentation(imageResized)!
+            let data = UIImagePNGRepresentation(imageResized)!
             cloudinary.createUploader().upload(data: data, uploadPreset: "presetPamin")
                 .response { (result, error) in
                     if error == nil {
