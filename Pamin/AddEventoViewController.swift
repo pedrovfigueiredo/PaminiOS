@@ -17,7 +17,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
     
     var gerenciadorLocalizacao = CLLocationManager()
     let event = Event()
-    var imagemEvento : UIImage?
+    var imagensEvento = [UIImage] ()
     
     
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             
             self.formToEvent { () in
                 
-                self.uploadImage(completion: { ()
+                self.uploadImages(completion: { ()
                     
                     PaminAPI().cadastrarNovoEvento(evento: self.event) { (response) in
                         switch (response.result) {
@@ -96,7 +96,9 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
         let valuesDictionary = self.form.values()
         
         if valuesDictionary["Imagem"] != nil {
-            self.imagemEvento = valuesDictionary["Imagem"] as? UIImage
+            for imagem in valuesDictionary["Imagem"] as! [UIImage]{
+                self.imagensEvento.append(imagem);
+            }
         }
         
         self.event.what = valuesDictionary["Título"] as! String? ?? ""
@@ -581,33 +583,36 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
         self.present(controller, animated: true, completion: nil)
     }
     
-    func uploadImage(completion: @escaping () -> ()){
+    func uploadImages(completion: @escaping () -> ()){
         
-        if self.imagemEvento != nil{
-            let config = CLDConfiguration(cloudName: PaminAPI().Cloudinary_CLOUDNAME, apiKey: PaminAPI().Cloudinary_CLOUDNAME)
-            let cloudinary = CLDCloudinary(configuration: config)
+        if self.imagensEvento.isEmpty{completion(); return;}
+        
+        let dispatchGroup = DispatchGroup()
+        let config = CLDConfiguration(cloudName: PaminAPI().Cloudinary_CLOUDNAME, apiKey: PaminAPI().Cloudinary_CLOUDNAME)
+        let cloudinary = CLDCloudinary(configuration: config)
+        var data : Data
+        
+        for imagem in self.imagensEvento{
+            dispatchGroup.enter()
             
             // Redimensionando Imagem
             let size = CGSize(width: 360, height: 270)
-            let imageResized = self.imagemEvento?.af_imageAspectScaled(toFit: size)
-            
-            let data = UIImagePNGRepresentation(imageResized!) as Data?
-            
-            cloudinary.createUploader().upload(data: data!, uploadPreset: "presetPamin")
+            let imageResized = imagem.af_imageAspectScaled(toFit: size)
+            data = UIImagePNGRepresentation(imageResized)!
+            cloudinary.createUploader().upload(data: data, uploadPreset: "presetPamin")
                 .response { (result, error) in
                     if error == nil {
                         // Adiciona url ao array pictures
                         self.event.pictures.append((result?.url)!)
-                        completion()
+                        dispatchGroup.leave()
                     }else{
                         print("Erro: \(String(describing: error))")
-                        completion()
+                        dispatchGroup.leave()
                     }
             }
-        }else{
+        }
+        dispatchGroup.notify(queue: .main) {
             completion()
         }
-        
     }
-    
 }

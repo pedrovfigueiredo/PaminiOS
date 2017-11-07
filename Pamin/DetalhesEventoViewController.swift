@@ -49,20 +49,14 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetalhesEventoViewController.didTap))
         slideshow.addGestureRecognizer(recognizer)
         
-        switch evento.pictures.count {
-        case 1:
-            let alamofireSource = [AlamofireSource(urlString: String(evento.pictures[0]))!]
-            slideshow.setImageInputs(alamofireSource)
-        case 2:
-            let alamofireSource = [AlamofireSource(urlString: String(evento.pictures[0]))!, AlamofireSource(urlString: String(evento.pictures[1]))!]
-            slideshow.setImageInputs(alamofireSource)
-        case 3:
-            let alamofireSource = [AlamofireSource(urlString: String(evento.pictures[0]))!, AlamofireSource(urlString: String(evento.pictures[1]))!, AlamofireSource(urlString: String(evento.pictures[2]))!]
-            slideshow.setImageInputs(alamofireSource)
-        default:
-            let localSource = [ImageSource(imageString: evento.recuperarUrlPadraoEvento(evento: evento))!]
-            slideshow.setImageInputs(localSource)
+        var source = [InputSource]()
+        for picture in evento.pictures{
+            source.append(AlamofireSource(urlString: String(picture))!)
         }
+        if source.isEmpty{
+            source.append(ImageSource(imageString: evento.recuperarUrlPadraoEvento(evento: evento))!)
+        }
+        slideshow.setImageInputs(source)
     
         corCategoria.backgroundColor = self.getColorEvento(evento: evento)
         
