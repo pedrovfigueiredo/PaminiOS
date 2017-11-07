@@ -23,7 +23,7 @@ class EventoAnotacao: NSObject, MKAnnotation{
         self.subtitle = subtitle
     }
     
-    func getImageAnotacao()  -> UIImage {
+    @objc func getImageAnotacao()  -> UIImage {
         
         switch self.evento.category_id {
         case 1:

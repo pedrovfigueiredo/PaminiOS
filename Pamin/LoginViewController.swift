@@ -28,11 +28,11 @@ class LoginViewController: UIViewController {
         self.clearUserDefaults()
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    func clearUserDefaults(){
+    @objc func clearUserDefaults(){
         
         if UserDefaults.standard.object(forKey: "regiaoAtualMapa") != nil {
             UserDefaults.standard.removeObject(forKey: "regiaoAtualMapa")
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    func displayAlert(title: String, message : String){
+    @objc func displayAlert(title: String, message : String){
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
         

@@ -99,8 +99,6 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
             self.imagemEvento = valuesDictionary["Imagem"] as? UIImage
         }
         
-        print(valuesDictionary)
-        
         self.event.what = valuesDictionary["Título"] as! String? ?? ""
         if valuesDictionary["categoria"] as! String? == "Selecionar"{
             self.event.category_name = ""
@@ -285,8 +283,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
                     $0.title = "Selecionar imagem:"
                 }
             }
-            
-            
+        
             
             +++ Section("Data") {
                 $0.tag = "Data"
@@ -414,7 +411,7 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
                 $0.useFormatterDuringInput = true
                 $0.title = $0.tag
                 $0.value = 0.00
-                let formatter = CurrencyFormatter()
+                let formatter = NumberFormatter()
                 formatter.locale = .current
                 formatter.numberStyle = .currency
                 $0.formatter = formatter
@@ -518,6 +515,9 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
     }
     
     
+    @IBAction func save(_ sender: Any) {
+        print("\(form.values())")
+    }
     
     
     func getIdCategoria(categoria : String) -> Int {
@@ -611,4 +611,3 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
     }
     
 }
-

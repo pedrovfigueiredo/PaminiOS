@@ -270,13 +270,13 @@ import Foundation
         var format = self.format
         
         
-        let preloadedComponentsMatch = GenerateUrlRegex.preloadedRegex.matches(in: sourceName, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, sourceName.characters.count))
+        let preloadedComponentsMatch = GenerateUrlRegex.preloadedRegex.matches(in: sourceName, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, sourceName.count))
         if preloadedComponentsMatch.count > 0 {
             if let preloadedComponents = preloadedComponentsMatch.first {
-                resourceType = (sourceName as NSString).substring(with: preloadedComponents.rangeAt(1))
-                type = (sourceName as NSString).substring(with: preloadedComponents.rangeAt(2))
-                version = (sourceName as NSString).substring(with: preloadedComponents.rangeAt(3))
-                sourceName = (sourceName as NSString).substring(with: preloadedComponents.rangeAt(4))
+                resourceType = (sourceName as NSString).substring(with: preloadedComponents.range(at: 1))
+                type = (sourceName as NSString).substring(with: preloadedComponents.range(at: 2))
+                version = (sourceName as NSString).substring(with: preloadedComponents.range(at: 3))
+                sourceName = (sourceName as NSString).substring(with: preloadedComponents.range(at: 4))
             }
         }
         
@@ -353,7 +353,7 @@ import Foundation
         
         let regex = try! NSRegularExpression(pattern: "([^:])\\/+", options: NSRegularExpression.Options.caseInsensitive)
         
-        return regex.stringByReplacingMatches(in: url, options: [], range: NSMakeRange(0, url.characters.count), withTemplate: "$1/")
+        return regex.stringByReplacingMatches(in: url, options: [], range: NSMakeRange(0, url.count), withTemplate: "$1/")
     }
     
     fileprivate struct GenerateUrlRegex {

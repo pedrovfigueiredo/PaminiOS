@@ -32,7 +32,7 @@ open class ImagePickerController : UIImagePickerController, TypedRowControllerTy
     public var row: RowOf<UIImage>!
     
     /// A closure to be called when the controller disappears.
-    public var onDismissCallback : ((UIViewController) -> ())?
+    @objc public var onDismissCallback : ((UIViewController) -> ())?
     
     open override func viewDidLoad() {
         super.viewDidLoad()

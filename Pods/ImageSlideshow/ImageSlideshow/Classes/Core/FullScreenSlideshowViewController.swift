@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objcMembers
 open class FullScreenSlideshowViewController: UIViewController {
 
     open var slideshow: ImageSlideshow = {
@@ -49,16 +50,12 @@ open class FullScreenSlideshowViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = backgroundColor
-
-        // slideshow view configuration
-        slideshow.frame = view.frame
         slideshow.backgroundColor = backgroundColor
 
         if let inputs = inputs {
             slideshow.setImageInputs(inputs)
         }
 
-        slideshow.frame = view.frame
         view.addSubview(slideshow)
 
         // close button configuration
@@ -66,10 +63,6 @@ open class FullScreenSlideshowViewController: UIViewController {
         closeButton.setImage(UIImage(named: "Frameworks/ImageSlideshow.framework/ImageSlideshow.bundle/ic_cross_white@2x"), for: UIControlState())
         closeButton.addTarget(self, action: #selector(FullScreenSlideshowViewController.close), for: UIControlEvents.touchUpInside)
         view.addSubview(closeButton)
-    }
-
-    override open func prefersHomeIndicatorAutoHidden() -> Bool {
-        return true
     }
 
     override open var prefersStatusBarHidden: Bool {

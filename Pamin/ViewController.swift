@@ -20,10 +20,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var events : [Event] = []
     let api = PaminAPI()
     let coreDataEvents = CoreDataEvents()
-    var gerenciadorLocalizacao = CLLocationManager()
-    var userlocation = CLLocation()
-    var filtro: Int = 0
-    var isUserLocationProcessed : Bool = false
+    @objc var gerenciadorLocalizacao = CLLocationManager()
+    @objc var userlocation = CLLocation()
+    @objc var filtro: Int = 0
+    @objc var isUserLocationProcessed : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +99,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // ATUALIZAR DADOS COM BANCO ONLINE (GESTO DE ARRASTAR TABLEVIEW PARA BAIXO)
     
-    func refresh(_ refreshControl: UIRefreshControl) {
+    @objc func refresh(_ refreshControl: UIRefreshControl) {
         
         if !(api.isInternetAvailable()){
             let controller = UIAlertController(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.", preferredStyle: .alert)
@@ -115,7 +115,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    func atualizarDados(){
+    @objc func atualizarDados(){
         api.popularArrayDeEvents { (events) in
             self.coreDataEvents.salvarEventosEmBD(eventos: events)
             self.events = self.coreDataEvents.recuperarTodosEventos()
@@ -231,7 +231,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return location.distance(from: self.userlocation)
     }
     
-    func ordenarTableView(){
+    @objc func ordenarTableView(){
         self.events.sort { (evento1, evento2) -> Bool in
             return self.distanciaUsuarioEvento(evento: evento1) < self.distanciaUsuarioEvento(evento: evento2)
         }
@@ -247,7 +247,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    func configurarGerenciadorLocalizacao(){
+    @objc func configurarGerenciadorLocalizacao(){
         gerenciadorLocalizacao.delegate = self
         gerenciadorLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
         gerenciadorLocalizacao.requestWhenInUseAuthorization()
@@ -257,7 +257,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("Erro: \(error)")
     }
     
-    func reloadDataWithAnimation(){
+    @objc func reloadDataWithAnimation(){
         let range = NSMakeRange(0, self.eventosTableView.numberOfSections)
         let sections = NSIndexSet(indexesIn: range)
         self.eventosTableView.reloadSections(sections as IndexSet, with: .automatic)

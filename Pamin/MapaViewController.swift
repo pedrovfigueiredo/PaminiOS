@@ -11,11 +11,11 @@ import MapKit
 
 class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
-    var gerenciadorLocalizacao = CLLocationManager()
+    @objc var gerenciadorLocalizacao = CLLocationManager()
     var eventos : [Event] = []
-    var isFirstCall: Bool = true
+    @objc var isFirstCall: Bool = true
     let coreDataEvents = CoreDataEvents()
-    var filtro : Int = 0
+    @objc var filtro : Int = 0
     
     @IBOutlet weak var menuMapButton: UIBarButtonItem!
     
@@ -62,7 +62,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         UserDefaults.standard.set(1, forKey: "telaOrigem")
     }
     
-    func marcarAnotacoes(){
+    @objc func marcarAnotacoes(){
         
         for evento in eventos{
             
@@ -158,7 +158,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
 
     
-    func Centralizar(latitude: CLLocationDegrees, longitude: CLLocationDegrees, deltaLatitude: CLLocationDegrees, deltaLongitude: CLLocationDegrees, animated: Bool){
+    @objc func Centralizar(latitude: CLLocationDegrees, longitude: CLLocationDegrees, deltaLatitude: CLLocationDegrees, deltaLongitude: CLLocationDegrees, animated: Bool){
         
         let localizacao = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let zoom = MKCoordinateSpan(latitudeDelta: deltaLatitude, longitudeDelta: deltaLongitude)
@@ -168,7 +168,7 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
 
     
-    func configurarGerenciadorLocalizacao(){
+    @objc func configurarGerenciadorLocalizacao(){
         gerenciadorLocalizacao.delegate = self
         gerenciadorLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
         gerenciadorLocalizacao.requestWhenInUseAuthorization()

@@ -8,14 +8,14 @@
 
 import UIKit
 import MapKit
+import ImageSlideshow
 
 class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var evento : Event!
-    var gerenciadorLocalizacao = CLLocationManager()
+    @objc var gerenciadorLocalizacao = CLLocationManager()
     
-    @IBOutlet weak var slideshow: UIView!
-    
+    @IBOutlet weak var slideshow: ImageSlideshow!
     @IBOutlet weak var corCategoria: UIView!
     @IBOutlet weak var whereLabel: UILabel!
     @IBOutlet weak var whatLabel: UILabel!
@@ -23,10 +23,8 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
     @IBOutlet weak var mapaDescricaoEvento: MKMapView!
     @IBOutlet weak var promotorLabel: UILabel!
     @IBOutlet weak var promotor_contactLabel: UILabel!
-    @IBOutlet weak var imagemEvento: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    //@IBOutlet weak var bgImagemEvento: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,20 +38,35 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         mapaDescricaoEvento.isRotateEnabled = false
         mapaDescricaoEvento.isScrollEnabled = false
         
-        //Imagem
+        //SlideShow
+        slideshow.backgroundColor = UIColor.white
+        slideshow.slideshowInterval = 4.0
+        slideshow.pageControlPosition = PageControlPosition.insideScrollView
+        slideshow.pageControl.currentPageIndicatorTintColor = UIColor.lightGray
+        slideshow.pageControl.pageIndicatorTintColor = UIColor.white
+        slideshow.contentScaleMode = UIViewContentMode.scaleAspectFit
+        slideshow.activityIndicator = DefaultActivityIndicator()
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(DetalhesEventoViewController.didTap))
+        slideshow.addGestureRecognizer(recognizer)
         
-        print(evento.pictures)
-        if !evento.pictures.isEmpty {
-            let url = URL(string: evento.pictures.first!)
-            
-            imagemEvento.af_setImage(withURL: url!, placeholderImage: evento.recuperarImagemPadraoEvento(evento: evento), filter: nil, progress: nil, progressQueue: DispatchQueue.global(), imageTransition: .crossDissolve(0.5), runImageTransitionIfCached: true, completion: nil)
-        }else{
-            imagemEvento.image = evento.recuperarImagemPadraoEvento(evento: evento)
+        switch evento.pictures.count {
+        case 1:
+            let alamofireSource = [AlamofireSource(urlString: String(evento.pictures[0]))!]
+            slideshow.setImageInputs(alamofireSource)
+        case 2:
+            let alamofireSource = [AlamofireSource(urlString: String(evento.pictures[0]))!, AlamofireSource(urlString: String(evento.pictures[1]))!]
+            slideshow.setImageInputs(alamofireSource)
+        case 3:
+            let alamofireSource = [AlamofireSource(urlString: String(evento.pictures[0]))!, AlamofireSource(urlString: String(evento.pictures[1]))!, AlamofireSource(urlString: String(evento.pictures[2]))!]
+            slideshow.setImageInputs(alamofireSource)
+        default:
+            let localSource = [ImageSource(imageString: evento.recuperarUrlPadraoEvento(evento: evento))!]
+            slideshow.setImageInputs(localSource)
         }
-
+    
         corCategoria.backgroundColor = self.getColorEvento(evento: evento)
         
-        // Endereço
+        //Endereço
         whereLabel.text = evento.where_event
         whereLabel.sizeToFit()
         
@@ -98,6 +111,11 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         
         //Descrição
         descriptionView.text = evento.description
+    }
+    
+    @objc func didTap() {
+        let fullScreenController = slideshow.presentFullScreenController(from: self)
+        fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -173,7 +191,7 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
     }
     
 
-    func marcarAnotacao(){
+    @objc func marcarAnotacao(){
         
         let coordenadas = CLLocationCoordinate2D(latitude: Double(evento.latitude)!, longitude: Double(evento.longitude)!)
         let anotacao = EventoAnotacao(coordenadas: coordenadas, evento: evento, title: evento.what, subtitle: evento.category_name)
@@ -201,14 +219,14 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         return anotacaoView
     }
     
-     func configurarGerenciadorLocalizacao(){
+     @objc func configurarGerenciadorLocalizacao(){
         gerenciadorLocalizacao.delegate = self
         gerenciadorLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
         gerenciadorLocalizacao.requestWhenInUseAuthorization()
         gerenciadorLocalizacao.startUpdatingLocation()
     }
     
-     func Centralizar(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
+     @objc func Centralizar(latitude: CLLocationDegrees, longitude: CLLocationDegrees){
         
         let deltaLatitude = 0.008
         let deltaLongitude = 0.008

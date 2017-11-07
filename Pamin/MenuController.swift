@@ -10,7 +10,7 @@ import UIKit
 
 class MenuController: UITableViewController {
     
-    var filtro : Int = 0
+    @objc var filtro : Int = 0
     var telaOrigem : Int!
     var usuarioLogado = User()
     
@@ -58,7 +58,7 @@ class MenuController: UITableViewController {
         self.revealViewController().frontViewController.view.isUserInteractionEnabled = true
     }
     
-    func arrendondarImagens(){
+    @objc func arrendondarImagens(){
         imagemTudo.layer.cornerRadius = imagemTudo.frame.size.width / 2;
         imagemTudo.clipsToBounds = true
         imagemPessoas.layer.cornerRadius = imagemPessoas.frame.size.width / 2;

@@ -11,7 +11,7 @@ import UIKit
 
 class CustomTabController: UITabBarController {
     
-    var filtro: Int = 0
+    @objc var filtro: Int = 0
     
     override func viewDidLoad() {
         

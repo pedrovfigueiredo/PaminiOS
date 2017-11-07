@@ -65,8 +65,6 @@ class User{
                 self._user_token = user_token
             }
         }
-    
-        
     }
     
     var user_id: Int {

@@ -459,10 +459,30 @@
             case 5:
                 return #imageLiteral(resourceName: "expressaoL")
             case 6:
-                return #imageLiteral(resourceName: "objlarge")
+                return #imageLiteral(resourceName: "objetosL")
             default:
                 return #imageLiteral(resourceName: "tudo")
             }
     }
     
+    func recuperarUrlPadraoEvento(evento: Event) -> String{
+        
+        // RETORNA O NOME DA IMAGEM PADRÃO DA CATEGORIA
+        switch evento.category_id {
+        case 1:
+            return "pessoasL"
+        case 2:
+            return "lugaresL"
+        case 3:
+            return "celebracaoL"
+        case 4:
+            return "saberesL"
+        case 5:
+            return "expressaoL"
+        case 6:
+            return "objetosL"
+        default:
+            return "tudo"
+        }
+    }
  }

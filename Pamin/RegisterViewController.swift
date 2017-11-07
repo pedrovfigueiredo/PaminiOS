@@ -32,7 +32,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
@@ -94,7 +94,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    func displayAlert(title: String, message : String){
+    @objc func displayAlert(title: String, message : String){
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil)
         
@@ -104,11 +104,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func checkFields() -> String{
+    @objc func checkFields() -> String{
         
         var mensagemAlerta : String = ""
         
-        if (nomeLabel.text?.characters.count)! <= 4 {
+        if (nomeLabel.text?.count)! <= 4 {
             mensagemAlerta.append("O nome tem que ter mais de 4 caracteres.")
             nomeLabel.text = ""
         }
@@ -119,7 +119,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             emailLabel.text = ""
         }
         
-        if (senhaLabel.text?.characters.count)! < 8 {
+        if (senhaLabel.text?.count)! < 8 {
             if mensagemAlerta != ""{mensagemAlerta.append("\n")}
             mensagemAlerta.append("A senha tem que ter pelo menos 8 caracteres.")
             senhaLabel.text = ""
@@ -135,7 +135,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return mensagemAlerta
     }
     
-    func isValidEmail(testStr:String) -> Bool {
+    @objc func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
