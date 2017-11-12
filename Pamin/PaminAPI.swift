@@ -85,6 +85,7 @@ class PaminAPI {
         Alamofire.request(URL, method: .post, parameters: eventJSON, encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in
                 completion(response)
+                print(response.response?.statusCode as Any)
             }
      }
     
@@ -196,6 +197,5 @@ class PaminAPI {
         let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
         return (isReachable && !needsConnection)
     }
+
 }
-
-

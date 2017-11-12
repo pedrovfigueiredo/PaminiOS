@@ -13,13 +13,15 @@ import ImageSlideshow
 class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var evento : Event!
+    var user = User()
+    
     @objc var gerenciadorLocalizacao = CLLocationManager()
     
     @IBOutlet weak var slideshow: ImageSlideshow!
     @IBOutlet weak var corCategoria: UIView!
     @IBOutlet weak var whereLabel: UILabel!
     @IBOutlet weak var whatLabel: UILabel!
-    @IBOutlet weak var descriptionView: UITextView!
+    @IBOutlet weak var descriptionView: UILabel!
     @IBOutlet weak var mapaDescricaoEvento: MKMapView!
     @IBOutlet weak var promotorLabel: UILabel!
     @IBOutlet weak var promotor_contactLabel: UILabel!
@@ -62,11 +64,9 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         
         //Endereço
         whereLabel.text = evento.where_event
-        whereLabel.sizeToFit()
         
         //Promotor
         promotorLabel.text = evento.promotor
-        promotorLabel.sizeToFit()
         promotor_contactLabel.text = evento.promotor_contact
         
         //Preço
@@ -101,10 +101,10 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         
         //Título
         whatLabel.text = evento.what
-        whatLabel.sizeToFit()
         
         //Descrição
         descriptionView.text = evento.description
+        
     }
     
     @objc func didTap() {
@@ -112,14 +112,6 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         fullScreenController.slideshow.activityIndicator = DefaultActivityIndicator(style: .white, color: nil)
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 {
-            if self.evento.promotor == ""{
-                return 0
-            }
-        }
-        return super.tableView(tableView, heightForHeaderInSection: section)
-    }
     
     func getColorEvento(evento: Event)  -> UIColor {
         
@@ -149,14 +141,21 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         // Checa-se seção por seção e, se necessário, linha por linha
         switch indexPath.section {
         case 0: // Imagem do Evento
-            break
+            switch indexPath.row {
+            case 0:
+                if self.evento.pictures == [] {return 0}
+            default:
+                break;
+            }
         case 1: // Detalhes
             switch indexPath.row {
             case 0:
                 if self.evento.what == ""{return 0}
             case 1:
-                if self.evento.price == ""{return 0}
+                if self.evento.description == ""{return 0}
             case 2:
+                if self.evento.price == ""{return 0}
+            case 3:
                 if self.evento.start_date == "" && self.evento.end_date == ""{return 0}
             default:
                 break;
@@ -168,9 +167,9 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
             case 1:
                 if self.evento.promotor_contact == ""{return 0}
             default:
-                return super.tableView(tableView, heightForRowAt: indexPath)
+                break;
             }
-        case 3:
+        case 3: // Endereço
             switch indexPath.row {
             case 0:
                 if self.evento.where_event == ""{return 0}
@@ -213,6 +212,21 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         return anotacaoView
     }
     
+    @IBAction func moreOptionsButton(_ sender: Any) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        self.present(alert, animated: true, completion: nil)
+        
+        //if (CONDICAO) {
+            alert.addAction(UIAlertAction(title: "Apagar", style: .destructive, handler: { action in
+                //chamar função delete
+            }))
+        //}
+        alert.addAction(UIAlertAction(title: "Denunciar", style: .default, handler: { action in
+            //chamar função denunciar
+        }))
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+    }
+    
      @objc func configurarGerenciadorLocalizacao(){
         gerenciadorLocalizacao.delegate = self
         gerenciadorLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
@@ -227,7 +241,6 @@ class DetalhesEventoViewController: UITableViewController, MKMapViewDelegate, CL
         
         let localizacao = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let zoom = MKCoordinateSpan(latitudeDelta: deltaLatitude, longitudeDelta: deltaLongitude)
-        
         let region = MKCoordinateRegion(center: localizacao, span: zoom)
         mapaDescricaoEvento.setRegion(region, animated: true)
     }

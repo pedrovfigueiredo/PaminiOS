@@ -27,8 +27,6 @@ class CelulaEvento: UITableViewCell {
         cellBG.layer.shadowOpacity = 1
         cellBG.layer.shadowOffset = CGSize.zero
         cellBG.layer.shadowRadius = 4
-        labelTitulo.sizeToFit()
-        labelEndereco.sizeToFit()
         
     }
     

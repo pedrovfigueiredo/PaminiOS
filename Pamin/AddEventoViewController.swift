@@ -396,7 +396,6 @@ class AddEventoViewController : FormViewController, CLLocationManagerDelegate {
                 $0.tag = "Pagamento"
                 $0.hidden = Condition.function(["categoria"], { form in
                     return ((form.rowBy(tag: "categoria") as! ActionSheetRow).value == "Pessoas" ||
-                            (form.rowBy(tag: "categoria") as! ActionSheetRow).value == "Objetos" ||
                             (form.rowBy(tag: "categoria") as! ActionSheetRow).value == "")
                 })
             }

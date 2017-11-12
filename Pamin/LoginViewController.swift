@@ -79,9 +79,22 @@ class LoginViewController: UIViewController {
                 self.performSegue(withIdentifier: "pastLogin", sender: nil)
                 
             }
-            
+        }
+    }
+    
+    @IBAction func loginGuest(_ sender: Any) {
+        
+        SwiftOverlays.showBlockingWaitOverlayWithText("Entrando...")
+        
+        let api = PaminAPI()
+        if !(api.isInternetAvailable()){
+            SwiftOverlays.removeAllBlockingOverlays()
+            self.displayAlert(title: "Erro de conexão", message: "Sem conexão com internet. Tente novamente mais tarde.")
         }
         
+        CoreDataEvents().deletarUsuarioCoreData()
+        SwiftOverlays.removeAllBlockingOverlays()
+        self.performSegue(withIdentifier: "pastLogin", sender: nil)
     }
     
     @objc func displayAlert(title: String, message : String){

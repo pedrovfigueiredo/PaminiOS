@@ -15,8 +15,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var eventosTableView: UITableView!
-    
-    
+
     var events : [Event] = []
     let api = PaminAPI()
     let coreDataEvents = CoreDataEvents()
@@ -52,7 +51,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         if self.tabBarController != nil{
@@ -263,13 +261,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.eventosTableView.reloadSections(sections as IndexSet, with: .automatic)
     }
     
-
-
+    @IBAction func addButton(_ sender: Any) {
+        let userIsLogged = CoreDataEvents().haUsuarioLogado()
+        if (userIsLogged) {
+            performSegue(withIdentifier: "segueAdd", sender: nil)
+        } else {
+            let alert = UIAlertController(title: "Atenção", message: "É necessário entrar para registrar um novo evento.", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Entrar", style: .cancel, handler: { action in
+                self.performSegue(withIdentifier: "segueLogIn", sender: nil)
+            }))
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-
 }
-

@@ -201,5 +201,19 @@ class MapaViewController: UIViewController, MKMapViewDelegate, CLLocationManager
         }
     }
 
-
+    @IBAction func addButton(_ sender: Any) {
+        let userIsLogged = CoreDataEvents().haUsuarioLogado()
+        if (userIsLogged) {
+            performSegue(withIdentifier: "segueAdd", sender: nil)
+        } else {
+            let alert = UIAlertController(title: "Atenção", message: "É necessário entrar para registrar um novo evento.", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            
+            alert.addAction(UIAlertAction(title: "Cancelar", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Entrar", style: .cancel, handler: { action in
+                self.performSegue(withIdentifier: "segueLogIn", sender: nil)
+            }))
+        }
+    }
+    
 }

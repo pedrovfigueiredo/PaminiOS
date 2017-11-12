@@ -23,6 +23,7 @@ class MenuController: UITableViewController {
     @IBOutlet weak var imagemExpress: UIImageView!
     @IBOutlet weak var imagemObjetos: UIImageView!
     
+    @IBOutlet var sairButton: UIButton!
     
     // Informações do Usuário
     @IBOutlet weak var nomeUsuario: UILabel!
@@ -32,29 +33,36 @@ class MenuController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usuarioLogado = CoreDataEvents().recuperarUsuarioLogado()
-        self.nomeUsuario.text = usuarioLogado.user_name
-        self.emailUsuario.text = usuarioLogado.user_email
-        
+        let userIsLogged = CoreDataEvents().haUsuarioLogado()
+        if (userIsLogged) {
+            usuarioLogado = CoreDataEvents().recuperarUsuarioLogado()
+            self.nomeUsuario.text = usuarioLogado.user_name
+            self.emailUsuario.text = usuarioLogado.user_email
+        } else {
+            self.nomeUsuario.text = "Usuário Convidado"
+            self.emailUsuario.text = "Clique para entrar"
+            self.sairButton.isHidden = true
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(MenuController.logInUser(sender:)))
+            emailUsuario.isUserInteractionEnabled = true
+            emailUsuario.addGestureRecognizer(tap)
+        }
         arrendondarImagens()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.revealViewController().view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.revealViewController().frontViewController.revealViewController().tapGestureRecognizer()
         self.revealViewController().frontViewController.view.isUserInteractionEnabled = false
         
-        //tableView.backgroundView = UIImageView(image: UIImage(named: "pattern.png"))
     }
     
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        self.revealViewController().frontViewController.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
+    self.revealViewController().frontViewController.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.revealViewController().frontViewController.view.isUserInteractionEnabled = true
     }
     
@@ -108,13 +116,15 @@ class MenuController: UITableViewController {
             let destino = segue.destination as! CustomTabController
             destino.filtro = self.filtro
         }
-
     }
 
-    @IBAction func logOutUser(_ sender: Any) {
-        
+    @objc func logInUser(sender:UITapGestureRecognizer) {
         PaminAPI().userLogout(usuario: self.usuarioLogado)
-        
+        performSegue(withIdentifier: "segueLogOut", sender: nil)
+    }
+    
+    @IBAction func logOutUser(_ sender: Any) {
+        PaminAPI().userLogout(usuario: self.usuarioLogado)
         CoreDataEvents().deletarUsuarioCoreData()
         performSegue(withIdentifier: "segueLogOut", sender: nil)
     }
@@ -123,5 +133,4 @@ class MenuController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-
 }
