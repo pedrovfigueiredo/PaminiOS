@@ -1060,7 +1060,7 @@
                         <outlet property="imagemTudo" destination="bF7-aq-eWT" id="ZkG-0Z-W62"/>
                         <outlet property="nomeUsuario" destination="Hln-VJ-8jO" id="Amb-6g-aBH"/>
                         <outlet property="sairButton" destination="l2h-6r-4GH" id="d7N-sB-Tas"/>
-                        <segue destination="dZA-Iv-POp" kind="custom" identifier="segueLogOut" customClass="SWRevealViewControllerSeguePushController" id="5RM-CH-4H3"/>
+                        <segue destination="dZA-Iv-POp" kind="presentation" identifier="segueLogOut" id="5RM-CH-4H3"/>
                         <segue destination="iRj-6i-0fC" kind="custom" identifier="voltarTabController" customClass="SWRevealViewControllerSeguePushController" id="SkA-cF-joP"/>
                     </connections>
                 </tableViewController>
